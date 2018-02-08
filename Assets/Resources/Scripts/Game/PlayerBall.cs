@@ -36,7 +36,7 @@ public class PlayerBall : MonoBehaviour {
 		}
 	}
 
-	public void Shoot(float angle, int intensity) {
+	public void Shoot(float angle, float intensity) {
 		Vector2 direction = 
 			new Vector2(
 				Mathf.Cos(angle), 
