@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 	[SerializeField]
+	GameOverUI gameOver;	
+	[SerializeField]
 	List<PlayerUI> playerUI = new List<PlayerUI>();
 	[SerializeField]
 	List<Ball> balls = new List<Ball>();
@@ -11,12 +13,14 @@ public class GameController : MonoBehaviour {
 	List<Ball> playerStart = new List<Ball>();
 	
 	List<PlayerBall> playerBalls = new List<PlayerBall>();
-	List<int> playerScore = new List<int>();
+	List<int> playerScores = new List<int>();
 	PlayerDatabase playerDatabase;
 
 	int playerCount = 2;
+	int maxScore = 5;
 	bool changeTurnFlag = false;
 
+	#region Initialization
 	void Start() {
 		playerDatabase = PlayerDatabase.GetPlayerDatabase();
 
@@ -28,9 +32,9 @@ public class GameController : MonoBehaviour {
 
 	void InitPlayers() {
 		foreach (var k in playerUI) {
-			k.InitScore(5);
+			k.InitScore(maxScore);
 			k.Init(playerUI.IndexOf(k));
-			playerScore.Add(0);
+			playerScores.Add(0);
 		}
 
 		playerUI[0].ToggleTurn(true);
@@ -45,40 +49,23 @@ public class GameController : MonoBehaviour {
 		for (int i = 0; i < playerStart.Count; i++) {
 			playerStart[i].SetPlayerID(i % 2);
 			playerStart[i].pocketBallEvent += PocketBall;
-
-			playerStart[i].SetPlayerBall();
-			var playerBall = playerStart[i].GetComponentInChildren<PlayerBall>();
-			playerBalls.Add(playerBall);
-			playerBall.playerShotEvent += HandlePlayerShot;
+			SetPlayerBall(playerStart[i]);
 		}
 	}
 
-	public void AddPlayerScore(int playerID, int amount) {
-		playerScore[playerID] += amount;
+	void SetPlayerBall(Ball ball) {
+		ball.SetPlayerBall();
+		var playerBall = ball.GetComponentInChildren<PlayerBall>();
+		playerBalls.Add(playerBall);
+		playerBall.playerShotEvent += HandlePlayerShot;
 	}
-
-	void UpdatePlayerUI(int playerID) {
-		playerUI[playerID].UpdateScore(playerScore[playerID]);
-	}
-
-	void PocketBall(Ball ball) {
-		AddPlayerScore(ball.playerID, 1);
-		UpdatePlayerUI(ball.playerID);
-
-		if (ball.isPlayer) {
-			playerBalls.Clear();
-			print("K");
-		}
-	}
+	#endregion
 
 	IEnumerator GameLoop() {
-		while (true) {
+		while (GetWinnerID() == -1) {
 			for (int i = 0; i < playerCount; i++) {
-				//for each player, roll his turn
-
 				for (int j = 0; j < playerCount; j++) {
 					if (j != i) {
-						//deactivates other players
 						playerBalls[j].GetComponentInChildren<PlayerBall>().ToggleTurn(false);
 					}
 				}
@@ -89,8 +76,36 @@ public class GameController : MonoBehaviour {
 				playerUI[i].ToggleTurn(false);
 				
 				changeTurnFlag = false;
+
+				if (GetWinnerID() != -1) break;
 			}
 		}
+
+		gameOver.Show(GetWinnerID());
+	}
+
+	public void AddPlayerScore(int playerID, int amount) {
+		playerScores[playerID] += amount;
+	}
+
+	void UpdatePlayerUI(int playerID) {
+		playerUI[playerID].UpdateScore(playerScores[playerID]);
+	}
+
+	IEnumerator ReassignPlayerBall(int playerID) {
+		List<Ball> candidateBalls = new List<Ball>();
+		for (int i = 0; i < balls.Count; i++) {
+			if (balls[i].gameObject.activeSelf && balls[i].playerID == playerID) {
+				candidateBalls.Add(balls[i]);
+			}
+		}
+
+		if (candidateBalls.Count > 1) {
+			int dice = Random.Range(0, candidateBalls.Count);
+			SetPlayerBall(candidateBalls[dice]);
+		}
+
+		yield return TurnOverWhenBallsStop();
 	}
 
 	void HandlePlayerShot(Ball ball) {
@@ -98,6 +113,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	IEnumerator TurnOverWhenBallsStop() {
+		yield return new WaitForSeconds(1f);
 		yield return new WaitWhile(() => AnyBallMoving());
 		changeTurnFlag = true;
 	}
@@ -116,5 +132,49 @@ public class GameController : MonoBehaviour {
 		}
 
 		return false;
+	}
+
+	int GetWinnerID() {
+		int winner = -1;
+		bool tie = false;
+
+		for (int i = 0; i < playerScores.Count; i++) {
+			if (playerScores[i] >= maxScore) {
+				if (winner != -1) {
+					tie = true;
+					break;
+				}
+				else {
+					winner = i;
+				}
+			}
+		}
+
+		if (tie) {
+			return -2;
+		}
+
+		if (winner != -1) {
+			return winner;
+		}
+
+		return -1;
+	}
+
+	void PocketBall(Ball ball) {
+		if (ball.isPlayer) {
+			for (int i = 0; i < playerCount; i++) {
+				if (i != ball.playerID) {
+					AddPlayerScore(i, 1);
+					UpdatePlayerUI(i);
+				}
+			}
+
+			StartCoroutine(ReassignPlayerBall(ball.playerID));
+			return;
+		}
+
+		AddPlayerScore(ball.playerID, 1);
+		UpdatePlayerUI(ball.playerID);
 	}
 }
