@@ -53,6 +53,11 @@ static class HushPuppy {
     	}
 	}
 
+    public static void destroyChildren(Transform go) {
+        foreach (Transform child in go)
+            GameObject.Destroy(child.gameObject);
+    }
+
     public static void destroyChildren(GameObject go) {
         foreach (Transform child in go.transform)
             GameObject.Destroy(child.gameObject);

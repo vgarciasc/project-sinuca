@@ -88,4 +88,15 @@ public class GenericAnimationFunctions : MonoBehaviour {
 			}
 		}
 	}
+
+	public static void FadeIn(Image image, float duration) {
+		image.gameObject.SetActive(true);
+		image.DOFade(1f, duration);
+	}
+
+	public static void FadeOut(Image image, float duration) {
+		image.DOFade(0f, duration).OnComplete(() => {
+			image.gameObject.SetActive(false);
+		});
+	}
 }
