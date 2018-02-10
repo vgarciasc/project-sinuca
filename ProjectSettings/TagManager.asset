@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - World
+  - PlayerDatabase
+  - Pocket
   layers:
   - Default
   - TransparentFX

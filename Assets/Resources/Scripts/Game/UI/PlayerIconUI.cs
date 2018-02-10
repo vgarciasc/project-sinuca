@@ -10,7 +10,7 @@ public class PlayerIconUI : MonoBehaviour {
 	
 	public void ToggleTurn(bool value, bool animation) {
 		if (!animation) {
-			glowBackground.DOFade(value ? 1f:0f, 0f);
+			glowBackground.DOFade(value ? 1f : 0f, 0f);
 			return;
 		}
 

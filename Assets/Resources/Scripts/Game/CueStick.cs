@@ -66,7 +66,7 @@ public class CueStick : MonoBehaviour {
 		}
 		else if (shotAnimation && currentIntensity < 0f) {
 			shotAnimation = false;
-			playerBall.Shoot(currentAngle, originalIntensity * 10);
+			playerBall.Shoot(currentAngle, originalIntensity * 30);
 		}
 	}
 
@@ -78,7 +78,7 @@ public class CueStick : MonoBehaviour {
 			if (currentIntensity < 0f) movingUp = true;
 		}
 		else if (shotAnimation) {
-			currentIntensity -= Time.deltaTime * 8f;
+			currentIntensity -= Time.deltaTime * 15f;
 		}
 	}
 

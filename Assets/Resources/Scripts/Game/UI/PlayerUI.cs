@@ -14,6 +14,7 @@ public class PlayerUI : MonoBehaviour {
 
 	List<PlayerScoreBallUI> scoreBalls;
 	int playerID = -1;
+	PlayerData data;
 
 	public void Init(int playerID) {
 		SetPlayerID(playerID);
@@ -22,9 +23,14 @@ public class PlayerUI : MonoBehaviour {
 
 	public void SetPlayerID(int playerID) {
 		this.playerID = playerID;
+
+		data = PlayerDatabase.GetPlayerDatabase().GetPlayerDataByID(playerID);
+		foreach (var k in scoreBalls) {
+			k.SetPlayerData(data);
+		}
 	}
 
-	public void SetMaxScore(int maxScore) {
+	public void InitScore(int maxScore) {
 		HushPuppy.destroyChildren(ballContainer);
 		scoreBalls = new List<PlayerScoreBallUI>();
 
@@ -32,13 +38,13 @@ public class PlayerUI : MonoBehaviour {
 			var obj = Instantiate(scoreBallPrefab, ballContainer, false);
 			var scoreBall = obj.GetComponentInChildren<PlayerScoreBallUI>();
 			scoreBalls.Add(scoreBall);
-			scoreBall.Toggle(false);
+			scoreBall.Toggle(false, false);
 		}
 	}
 
 	public void UpdateScore(int score) {
 		for (int i = 0; i < scoreBalls.Count; i++) {
-			scoreBalls[i].Toggle(i >= score);
+			scoreBalls[i].Toggle(i >= score, true);
 		}
 	}
 
