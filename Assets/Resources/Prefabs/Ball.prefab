@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 50079021795437744}
   sr: {fileID: 212826740718919332}
+  playerBall: {fileID: 1560038886753168, guid: 2e438c8b84e0b9e4ab136216cd1952b6, type: 2}
 --- !u!212 &212826740718919332
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -6,19 +6,31 @@ public class PlayerBall : MonoBehaviour {
 	[SerializeField]
 	GameObject cueStickPrefab;
 
-	Rigidbody2D rigidbody;
+	public delegate void PlayerBallDelegate(Ball ball);
+	public event PlayerBallDelegate playerShotEvent;
+	public Ball ball { get; private set; }
 	
-	Ball ball;
 	CueStick cueStick;
+	Rigidbody2D rigidbody;
+
+	bool inTurn;
+	bool hasShot;
+	bool isMoving;
 
 	void Start() {
 		ball = this.GetComponentInParent<Ball>();
 		rigidbody = GetComponentInParent<Rigidbody2D>();
+	}
 
-		InitCueStick();
+	void Update() {
+		isMoving = ball.IsMoving();
+
+		HandleTurnOver();
 	}
 
 	void InitCueStick() {
+		hasShot = false;
+
 		var obj = Instantiate(
 			cueStickPrefab, 
 			this.transform.position, 
@@ -30,10 +42,19 @@ public class PlayerBall : MonoBehaviour {
 		cueStick = cs;
 	}
 
-	void Update() {
-		if (cueStick != null) {
-			cueStick.gameObject.SetActive(rigidbody.velocity.magnitude < 0.1f);
+	void HandleTurnOver() {
+		if (inTurn && hasShot && !isMoving) {
+			if (playerShotEvent != null) {
+				playerShotEvent(ball);
+			}			
+
+			inTurn = false;
 		}
+	}
+
+	public void ToggleTurn(bool value) {
+		inTurn = value;
+		ToggleCueStick(value);
 	}
 
 	public void Shoot(float angle, float intensity) {
@@ -45,5 +66,17 @@ public class PlayerBall : MonoBehaviour {
 			* Mathf.Rad2Deg;
 
 		rigidbody.AddForce(direction);
+		hasShot = true;
+		ToggleCueStick(false);
+	}
+
+	void ToggleCueStick(bool value) {
+		if (value) {
+			InitCueStick();
+		} else {
+			if (cueStick != null) {
+				Destroy(cueStick.gameObject);
+			}
+		}
 	}
 }
