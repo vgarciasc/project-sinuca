@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour {
 	[SerializeField]
-	Rigidbody2D rigidbody;
+	Rigidbody2D rb2d;
+	[SerializeField]
+	Rigidbody rb3d;
 	[SerializeField]
 	SpriteRenderer sr;
+	[SerializeField]
+	MeshRenderer mr;
 	[SerializeField]
 	GameObject playerBall;	
 
@@ -23,15 +27,31 @@ public class Ball : MonoBehaviour {
 	}
 
 	void SetPlayerData(PlayerData data) {
-		sr.color = data.color;
+		this.data = data;
+
+		if (sr != null) {
+			sr.color = data.color;
+		} else if (mr != null) {
+			mr.material = data.material;
+		}
 	}
 
 	public void SetPlayerBall() {
 		var obj = Instantiate(playerBall, this.transform, false);
 		isPlayer = true;
+
+		if (rb3d != null) {
+			mr.material = data.playerMaterial;
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
+		if (collider.gameObject.tag == "Pocket") {
+			Pocket();
+		}
+	}
+
+	void OnTriggerEnter(Collider collider) {
 		if (collider.gameObject.tag == "Pocket") {
 			Pocket();
 		}
@@ -43,6 +63,13 @@ public class Ball : MonoBehaviour {
 	}
 
 	public bool IsMoving() {
-		return rigidbody.velocity.magnitude > 0.05f;
+		if (rb2d != null) {
+			return rb2d.velocity.magnitude > 0.05f;
+		} else if (rb3d != null) {
+			return rb3d.velocity.magnitude > 0.1f;
+		} 
+		
+		print("This shouldn't be happening");
+		return false;
 	}
 }

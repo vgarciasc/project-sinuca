@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b2ab1ad4dbf064b99606befc0bcf95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cueStickPrefab: {fileID: 1778818384548498, guid: b9642685d9b476943a9dc61be556b752,
+  cueStickPrefab: {fileID: 1385179333439368, guid: 135d0b81b421151489651bb3f56bb8b3,
     type: 2}
 --- !u!212 &212998637914612088
 SpriteRenderer:

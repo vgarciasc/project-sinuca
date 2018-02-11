@@ -6,12 +6,14 @@ public class PlayerBall : MonoBehaviour {
 	[SerializeField]
 	GameObject cueStickPrefab;
 
+	Rigidbody2D rb2d;
+	Rigidbody rb3d;
+
 	public delegate void PlayerBallDelegate(Ball ball);
 	public event PlayerBallDelegate playerShotEvent;
 	public Ball ball { get; private set; }
 	
 	CueStick cueStick;
-	Rigidbody2D rigidbody;
 
 	bool inTurn;
 	bool hasShot;
@@ -19,7 +21,8 @@ public class PlayerBall : MonoBehaviour {
 
 	void Start() {
 		ball = this.GetComponentInParent<Ball>();
-		rigidbody = GetComponentInParent<Rigidbody2D>();
+		rb2d = GetComponentInParent<Rigidbody2D>();
+		rb3d = GetComponentInParent<Rigidbody>();
 	}
 
 	void Update() {
@@ -58,14 +61,26 @@ public class PlayerBall : MonoBehaviour {
 	}
 
 	public void Shoot(float angle, float intensity) {
-		Vector2 direction = 
-			new Vector2(
-				Mathf.Cos(angle), 
-				Mathf.Sin(angle)).normalized 
-			* intensity
-			* Mathf.Rad2Deg;
+		if (rb2d != null) {
+			Vector2 direction = 
+				new Vector2(
+					Mathf.Cos(angle), 
+					Mathf.Sin(angle)).normalized 
+				* intensity
+				* Mathf.Rad2Deg;
+			rb2d.AddForce(direction);
+		}
+		else if (rb3d != null) {
+			Vector3 direction = 
+				new Vector3(
+					Mathf.Cos(angle),
+					0f,
+					Mathf.Sin(angle)).normalized 
+				* intensity / 20f
+				* Mathf.Rad2Deg;
+			rb3d.AddForce(direction);
+		}
 
-		rigidbody.AddForce(direction);
 		hasShot = true;
 		ToggleCueStick(false);
 	}

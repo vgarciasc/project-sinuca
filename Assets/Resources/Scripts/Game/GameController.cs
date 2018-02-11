@@ -49,15 +49,16 @@ public class GameController : MonoBehaviour {
 		for (int i = 0; i < playerStart.Count; i++) {
 			playerStart[i].SetPlayerID(i % 2);
 			playerStart[i].pocketBallEvent += PocketBall;
-			SetPlayerBall(playerStart[i]);
+			var pball = SetPlayerBall(playerStart[i]);
+			playerBalls.Add(pball);
 		}
 	}
 
-	void SetPlayerBall(Ball ball) {
+	PlayerBall SetPlayerBall(Ball ball) {
 		ball.SetPlayerBall();
 		var playerBall = ball.GetComponentInChildren<PlayerBall>();
-		playerBalls.Add(playerBall);
 		playerBall.playerShotEvent += HandlePlayerShot;
+		return playerBall;
 	}
 	#endregion
 
@@ -92,17 +93,25 @@ public class GameController : MonoBehaviour {
 		playerUI[playerID].UpdateScore(playerScores[playerID]);
 	}
 
-	IEnumerator ReassignPlayerBall(int playerID) {
+	IEnumerator ReassignPlayerBall(Ball originalBall) {
 		List<Ball> candidateBalls = new List<Ball>();
 		for (int i = 0; i < balls.Count; i++) {
-			if (balls[i].gameObject.activeSelf && balls[i].playerID == playerID) {
+			if (balls[i].gameObject.activeSelf && balls[i].playerID == originalBall.playerID) {
 				candidateBalls.Add(balls[i]);
 			}
 		}
 
+
 		if (candidateBalls.Count > 1) {
 			int dice = Random.Range(0, candidateBalls.Count);
-			SetPlayerBall(candidateBalls[dice]);
+			Ball elected = candidateBalls[dice];
+			SetPlayerBall(elected);
+
+			for (int i = 0; i < playerBalls.Count; i++) {
+				if (playerBalls[i].ball != null && playerBalls[i].ball.playerID == originalBall.playerID) {
+					playerBalls[i] = elected.GetComponentInChildren<PlayerBall>();
+				}
+			}
 		}
 
 		yield return TurnOverWhenBallsStop();
@@ -170,7 +179,7 @@ public class GameController : MonoBehaviour {
 				}
 			}
 
-			StartCoroutine(ReassignPlayerBall(ball.playerID));
+			StartCoroutine(ReassignPlayerBall(ball));
 			return;
 		}
 

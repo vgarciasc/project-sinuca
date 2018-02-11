@@ -26,28 +26,42 @@ public class CueStick : MonoBehaviour {
 	}
 
 	void HandleAim() {
-		var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		RaycastHit hit;
+		Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+		if (Physics.Raycast(mouseRay, out hit, (1 << LayerMask.NameToLayer("MouseClip")))) {
+			mousePos = hit.point;
+		}
+
 		var ballPos = playerBall.transform.position;
-		var aimVec = mousePos - ballPos;
+		var aimVec = Vector3.ProjectOnPlane(mousePos - ballPos, Vector3.up);
 		var axisVec = Vector3.right;
 
-		float angle = (Vector2.Angle(aimVec, axisVec) * Mathf.Deg2Rad);
-		bool orientation = aimVec.x * axisVec.y - aimVec.y * axisVec.x < 0;
-		float distance = (3.15f + currentIntensity * 0.8f);
+		Debug.DrawLine(ballPos, aimVec + ballPos, Color.green, Time.deltaTime);
+		Debug.DrawLine(ballPos, axisVec + ballPos, Color.green, Time.deltaTime);
+
+		float angle = (Vector3.Angle(aimVec, axisVec) * Mathf.Deg2Rad);
+		bool orientation = aimVec.z * axisVec.x - aimVec.x * axisVec.z >= 0;
+		float distance = (2.1f + currentIntensity * 0.8f);
 
 		Vector3 cuePos = new Vector3(
 			Mathf.Cos(orientation? angle : -angle),
+			0,
 			Mathf.Sin(orientation? angle : -angle)
-		).normalized * distance * -1f + ballPos;
+		).normalized * distance * -1f;
 
 		var cueAngle = (orientation? angle : -angle);
 		currentAngle = cueAngle;
 
-		this.transform.position = cuePos;
+		this.transform.position = cuePos + ballPos;
 
 		if (!shotAnimation) {
-			this.transform.rotation = Quaternion.Euler(0, 0, cueAngle * Mathf.Rad2Deg);
+			this.transform.rotation = Quaternion.Euler(90, 0, cueAngle * Mathf.Rad2Deg);
 		}
+
+		var meshRenderer = this.GetComponentInChildren<MeshFilter>().mesh;
+		meshRenderer.RecalculateBounds();
+		meshRenderer.RecalculateNormals();
 
 		SetPathPreview(ballPos, aimVec);
 		HandleBackAndForth();
@@ -83,12 +97,14 @@ public class CueStick : MonoBehaviour {
 	}
 
 	void SetPathPreview(Vector3 position, Vector3 direction) {
-		RaycastHit2D hit = Physics2D.Raycast(position, direction, Mathf.Infinity, (1 << LayerMask.NameToLayer("Wall")));
-		
-		Vector3[] vectors = new Vector3[3];
-		vectors[0] = position;
-		vectors[1] = (hit.point);
-		// vectors[2] = (Vector2.Reflect(direction, hit.normal)).normalized * 5f + (Vector2) hit.point;
-		lineRenderer.SetPositions(vectors);
+		Ray ray = new Ray(position, direction);
+		RaycastHit hit;
+		if (Physics.Raycast(ray, out hit, (1 << LayerMask.NameToLayer("Wall")))) {
+			Vector3[] vectors = new Vector3[3];
+			vectors[0] = position;
+			vectors[1] = (hit.point);
+			// vectors[2] = (Vector2.Reflect(direction, hit.normal)).normalized * 5f + (Vector2) hit.point;
+			lineRenderer.SetPositions(vectors);
+		}
 	}
 }
