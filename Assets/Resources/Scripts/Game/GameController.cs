@@ -57,7 +57,6 @@ public class GameController : MonoBehaviour {
 	PlayerBall SetPlayerBall(Ball ball) {
 		ball.SetPlayerBall();
 		var playerBall = ball.GetComponentInChildren<PlayerBall>();
-		playerBall.playerShotEvent += HandlePlayerShot;
 		return playerBall;
 	}
 	#endregion
@@ -65,15 +64,11 @@ public class GameController : MonoBehaviour {
 	IEnumerator GameLoop() {
 		while (GetWinnerID() == -1) {
 			for (int i = 0; i < playerCount; i++) {
-				for (int j = 0; j < playerCount; j++) {
-					if (j != i) {
-						playerBalls[j].GetComponentInChildren<PlayerBall>().ToggleTurn(false);
-					}
-				}
-
 				playerUI[i].ToggleTurn(true);
-				playerBalls[i].GetComponentInChildren<PlayerBall>().ToggleTurn(true);
-				yield return new WaitUntil(() => changeTurnFlag);
+				playerBalls[i].ToggleTurn(true);
+				yield return new WaitWhile(() => playerBalls[i].inTurn);
+				yield return new WaitWhile(() => AnyBallMoving());
+				playerBalls[i].ToggleTurn(false);
 				playerUI[i].ToggleTurn(false);
 				
 				changeTurnFlag = false;
@@ -93,16 +88,17 @@ public class GameController : MonoBehaviour {
 		playerUI[playerID].UpdateScore(playerScores[playerID]);
 	}
 
-	IEnumerator ReassignPlayerBall(Ball originalBall) {
+	void ReassignPlayerBall(Ball originalBall) {
 		List<Ball> candidateBalls = new List<Ball>();
 		for (int i = 0; i < balls.Count; i++) {
-			if (balls[i].gameObject.activeSelf && balls[i].playerID == originalBall.playerID) {
+			if (balls[i].gameObject.activeSelf 
+			&& balls[i].playerID == originalBall.playerID
+			&& !balls[i].isPlayer) {
 				candidateBalls.Add(balls[i]);
 			}
 		}
 
-
-		if (candidateBalls.Count > 1) {
+		if (candidateBalls.Count > 0) {
 			int dice = Random.Range(0, candidateBalls.Count);
 			Ball elected = candidateBalls[dice];
 			SetPlayerBall(elected);
@@ -113,18 +109,6 @@ public class GameController : MonoBehaviour {
 				}
 			}
 		}
-
-		yield return TurnOverWhenBallsStop();
-	}
-
-	void HandlePlayerShot(Ball ball) {
-		StartCoroutine(TurnOverWhenBallsStop());
-	}
-
-	IEnumerator TurnOverWhenBallsStop() {
-		yield return new WaitForSeconds(1f);
-		yield return new WaitWhile(() => AnyBallMoving());
-		changeTurnFlag = true;
 	}
 
 	bool AnyBallMoving() {
@@ -179,7 +163,7 @@ public class GameController : MonoBehaviour {
 				}
 			}
 
-			StartCoroutine(ReassignPlayerBall(ball));
+			ReassignPlayerBall(ball);
 			return;
 		}
 

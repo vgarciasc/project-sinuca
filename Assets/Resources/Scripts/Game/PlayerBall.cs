@@ -9,13 +9,11 @@ public class PlayerBall : MonoBehaviour {
 	Rigidbody2D rb2d;
 	Rigidbody rb3d;
 
-	public delegate void PlayerBallDelegate(Ball ball);
-	public event PlayerBallDelegate playerShotEvent;
 	public Ball ball { get; private set; }
+	public bool inTurn { get; private set; }
 	
 	CueStick cueStick;
 
-	bool inTurn;
 	bool hasShot;
 	bool isMoving;
 
@@ -47,10 +45,6 @@ public class PlayerBall : MonoBehaviour {
 
 	void HandleTurnOver() {
 		if (inTurn && hasShot && !isMoving) {
-			if (playerShotEvent != null) {
-				playerShotEvent(ball);
-			}			
-
 			inTurn = false;
 		}
 	}

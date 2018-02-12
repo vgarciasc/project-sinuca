@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CueStick : MonoBehaviour {
+	[SerializeField]
+	[Range(0f, 100f)]
+	float intensityModifier = 30f;
+	
 	LineRenderer lineRenderer;
 	PlayerBall playerBall;
 
@@ -80,7 +84,7 @@ public class CueStick : MonoBehaviour {
 		}
 		else if (shotAnimation && currentIntensity < 0f) {
 			shotAnimation = false;
-			playerBall.Shoot(currentAngle, originalIntensity * 30);
+			playerBall.Shoot(currentAngle, originalIntensity * intensityModifier);
 		}
 	}
 

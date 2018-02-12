@@ -63,11 +63,13 @@ public class Ball : MonoBehaviour {
 	}
 
 	public bool IsMoving() {
-		if (rb2d != null) {
+		if (!this.gameObject.activeSelf) {
+			return false;
+		} else if (rb2d != null) {
 			return rb2d.velocity.magnitude > 0.05f;
 		} else if (rb3d != null) {
 			return rb3d.velocity.magnitude > 0.1f;
-		} 
+		}
 		
 		print("This shouldn't be happening");
 		return false;
