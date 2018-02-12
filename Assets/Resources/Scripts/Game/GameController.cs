@@ -71,7 +71,7 @@ public class GameController : MonoBehaviour {
 				playerBalls[i].ToggleTurn(true);
 				
 				yield return new WaitWhile(() => playerBalls[i].inTurn);
-				// yield return new WaitWhile(() => AnyBallMoving());
+				yield return new WaitWhile(() => AnyBallMoving());
 
 				playerBalls[i].ToggleTurn(false);
 				playerUI[i].ToggleTurn(false);
