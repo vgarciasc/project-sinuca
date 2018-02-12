@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
+	[Header("Game Control")]
+	[SerializeField]
+	int maxScore = 6;
+
+	[Header("References")]
 	[SerializeField]
 	GameOverUI gameOver;	
 	[SerializeField]
@@ -17,8 +22,6 @@ public class GameController : MonoBehaviour {
 	PlayerDatabase playerDatabase;
 
 	int playerCount = 2;
-	int maxScore = 5;
-	bool changeTurnFlag = false;
 
 	#region Initialization
 	void Start() {
@@ -66,12 +69,12 @@ public class GameController : MonoBehaviour {
 			for (int i = 0; i < playerCount; i++) {
 				playerUI[i].ToggleTurn(true);
 				playerBalls[i].ToggleTurn(true);
+				
 				yield return new WaitWhile(() => playerBalls[i].inTurn);
-				yield return new WaitWhile(() => AnyBallMoving());
+				// yield return new WaitWhile(() => AnyBallMoving());
+
 				playerBalls[i].ToggleTurn(false);
 				playerUI[i].ToggleTurn(false);
-				
-				changeTurnFlag = false;
 
 				if (GetWinnerID() != -1) break;
 			}

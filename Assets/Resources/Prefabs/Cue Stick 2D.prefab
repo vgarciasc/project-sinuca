@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 212395967648123410}
   - component: {fileID: 114180965165107856}
   m_Layer: 0
-  m_Name: Cue Stick
+  m_Name: Cue Stick 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,6 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc7d4452e33a3f448be34d21d7fc45b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intensityModifier: 30
 --- !u!120 &120407008059639912
 LineRenderer:
   m_ObjectHideFlags: 1

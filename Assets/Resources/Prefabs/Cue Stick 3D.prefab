@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc7d4452e33a3f448be34d21d7fc45b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intensityModifier: 52
 --- !u!120 &120011201848523652
 LineRenderer:
   m_ObjectHideFlags: 1
