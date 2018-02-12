@@ -9,47 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1550672012150738}
+  m_RootGameObject: {fileID: 1865205574402256}
   m_IsPrefabParent: 1
---- !u!1 &1550672012150738
+--- !u!1 &1865205574402256
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4838987040532702}
-  - component: {fileID: 33614628966021628}
-  - component: {fileID: 135281261943945628}
-  - component: {fileID: 23831394446990590}
-  - component: {fileID: 54311615057528852}
-  - component: {fileID: 114581199184384912}
+  - component: {fileID: 4731204325144154}
+  - component: {fileID: 33286987465101052}
+  - component: {fileID: 65983025003215668}
+  - component: {fileID: 23047087770136448}
+  - component: {fileID: 114834194532816076}
   m_Layer: 0
-  m_Name: Ball 3D
-  m_TagString: Ball
+  m_Name: Accelerator Pad
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4838987040532702
+--- !u!4 &4731204325144154
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1550672012150738}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.38836372, y: -0, z: 0.3946147}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_GameObject: {fileID: 1865205574402256}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.759, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23831394446990590
+--- !u!23 &23047087770136448
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1550672012150738}
+  m_GameObject: {fileID: 1865205574402256}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 01377d1a4c7e9f840af7f644f6df88c5, type: 2}
+  - {fileID: 2100000, guid: 4fadf5e3ede44894fa1a50477c521594, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,52 +77,34 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33614628966021628
+--- !u!33 &33286987465101052
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1550672012150738}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54311615057528852
-Rigidbody:
+  m_GameObject: {fileID: 1865205574402256}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65983025003215668
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1550672012150738}
+  m_GameObject: {fileID: 1865205574402256}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 0.1
-  m_Drag: 0.3
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
---- !u!114 &114581199184384912
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114834194532816076
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1550672012150738}
+  m_GameObject: {fileID: 1865205574402256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f42120c6ae35ca49bff85071ea801b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 904aeaaae9264ac44b41bf500b198d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb3d: {fileID: 54311615057528852}
-  sr: {fileID: 0}
-  mr: {fileID: 23831394446990590}
-  playerBall: {fileID: 1560038886753168, guid: 2e438c8b84e0b9e4ab136216cd1952b6, type: 2}
---- !u!135 &135281261943945628
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1550672012150738}
-  m_Material: {fileID: 13400000, guid: 2fc241b74db78a84483fe017fbcd856c, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  intensity: 5

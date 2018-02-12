@@ -38,17 +38,21 @@ public class BlockingWall : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collider) {
-		if (!active) {
-			inside.Add(collider.gameObject);
-		} else {
-			ToggleWall(false);
+		var obj = collider.gameObject;
+		
+		if (obj.tag == "Ball") {
+			if (!active) {
+				inside.Add(obj);
+			} else {
+				ToggleWall(false);
+			}
 		}
 	}
 
 	void OnTriggerExit(Collider collider) {
 		var obj = collider.gameObject;
 
-		if (!active && inside.Contains(obj)) {
+		if (obj.tag == "Ball" && !active && inside.Contains(obj)) {
 			inside.Remove(obj);
 
 			if (inside.Count == 0) {

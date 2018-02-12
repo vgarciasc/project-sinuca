@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour {
 	[SerializeField]
-	Rigidbody2D rb2d;
-	[SerializeField]
 	Rigidbody rb3d;
 	[SerializeField]
 	SpriteRenderer sr;
@@ -65,13 +63,27 @@ public class Ball : MonoBehaviour {
 	public bool IsMoving() {
 		if (!this.gameObject.activeSelf) {
 			return false;
-		} else if (rb2d != null) {
-			return rb2d.velocity.magnitude > 0.05f;
 		} else if (rb3d != null) {
 			return rb3d.velocity.magnitude > 0.1f;
 		}
 		
 		print("This shouldn't be happening");
 		return false;
+	}
+
+	public void Boost(float intensity) {
+		if (rb3d != null) {
+			rb3d.velocity *= intensity;
+		}
+	}
+
+	public void Teleport(Vector3 position, Vector3 direction) {
+		this.transform.position = position;
+		RedirectVelocity(direction);
+	}
+
+	public void RedirectVelocity(Vector3 direction) {
+		float magnitude = rb3d.velocity.magnitude;
+		rb3d.velocity = direction.normalized * magnitude;
 	}
 }
