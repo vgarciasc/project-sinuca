@@ -43,13 +43,17 @@ public class Portal : MonoBehaviour {
 
 	void Teleport(Ball ball) {
 		var exit = manager.GetExit(this);
-		var angle = -exit.angle * Mathf.Deg2Rad;
-		var direction = new Vector3(
-			Mathf.Cos(angle),
-			0,
-			Mathf.Sin(angle)
-		);
-		direction = Vector3.ProjectOnPlane(direction, Vector3.up);
+		Vector3 direction = Vector3.up;
+
+		if (exit.directional) {
+			var angle = -exit.angle * Mathf.Deg2Rad;
+			direction = new Vector3(
+				Mathf.Cos(angle),
+				0,
+				Mathf.Sin(angle)
+			);
+			direction = Vector3.ProjectOnPlane(direction, Vector3.up);
+		}
 
 		ball.Teleport(exit.transform.position, direction);
 		StartCoroutine(HandleCooldown(ball));

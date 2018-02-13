@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour {
+	[Header("Mechanics")]
+	[SerializeField]
+	float velocityCap;
+
+	[Header("References")]
 	[SerializeField]
 	Rigidbody rb3d;
 	[SerializeField]
@@ -60,6 +65,12 @@ public class Ball : MonoBehaviour {
 		this.gameObject.SetActive(false);
 	}
 
+	void FixedUpdate() {
+		if (rb3d.velocity.magnitude > velocityCap) {
+			rb3d.velocity = rb3d.velocity.normalized * velocityCap;
+		}
+	}
+
 	public bool IsMoving() {
 		if (!this.gameObject.activeSelf) {
 			return false;
@@ -79,7 +90,10 @@ public class Ball : MonoBehaviour {
 
 	public void Teleport(Vector3 position, Vector3 direction) {
 		this.transform.position = position;
-		RedirectVelocity(direction);
+
+		if (direction != Vector3.up) {
+			RedirectVelocity(direction);
+		}
 	}
 
 	public void RedirectVelocity(Vector3 direction) {
