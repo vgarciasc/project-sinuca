@@ -1510,7 +1510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.7735004, y: 0}
+  m_AnchoredPosition: {x: 0.60899925, y: 4.341999}
   m_SizeDelta: {x: 3.972, y: 7.472}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &371089837
@@ -2156,12 +2156,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 555273489}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5.4589996, y: -5.244, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 771748098}
-  m_RootOrder: 3
+  m_Father: {fileID: 1853488905}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2652,7 +2652,6 @@ RectTransform:
   - {fileID: 494068672}
   - {fileID: 1489217784}
   - {fileID: 1853488905}
-  - {fileID: 555273490}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2696,7 +2695,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.0065002, y: 0}
+  m_AnchoredPosition: {x: -0.62400055, y: 4.341999}
   m_SizeDelta: {x: 7.076, y: 7.472}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &826496537
@@ -6121,6 +6120,7 @@ RectTransform:
   m_Children:
   - {fileID: 1068354865}
   - {fileID: 1767056678}
+  - {fileID: 555273490}
   m_Father: {fileID: 771748098}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6141,15 +6141,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePreferences: {fileID: 11400000, guid: c41658f0741ca1142aab0fcba5cc23b4, type: 2}
-  img:
-  - {fileID: 0}
-  - {fileID: 0}
   color:
   - {fileID: 1650162877}
   - {fileID: 1007314934}
   texture:
   - {fileID: 2115759514}
   - {fileID: 42525017}
+  ready:
+  - {fileID: 1238969188}
+  - {fileID: 944064030}
+  image: {fileID: 80827645}
   type: {fileID: 2039269786}
   modifiers: {fileID: 211943841}
   powerUps: {fileID: 1162347842}
@@ -6161,8 +6162,14 @@ MonoBehaviour:
   - {r: 1, g: 0.93103445, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.84827566, a: 1}
   textures:
-  - {fileID: 2800000, guid: 8cabdf88dba852e408d430bbbd908ccf, type: 3}
-  - {fileID: 2800000, guid: 942ab411d5cba314aad972eb55e66576, type: 3}
+  - {fileID: 2800000, guid: 93d6f74f2ef358e41989d4152b195f88, type: 3}
+  - {fileID: 2800000, guid: 64734c9bc6df32149a0c9cb0b18693e1, type: 3}
+  - {fileID: 2800000, guid: 7bbfb8818476e4641ba3e75f5225eb69, type: 3}
+  - {fileID: 2800000, guid: 05ffd580f33f74644a6025ec196860af, type: 3}
+  tableType:
+  - {fileID: 21300000, guid: c0351db51f82c3c4b9f05baabff7175e, type: 3}
+  - {fileID: 21300008, guid: 26f5feb78ea6ef848bb204cedbf0443d, type: 3}
+  - {fileID: 21300000, guid: 029d57f2a5bf40f468f431d74ed15151, type: 3}
   transitionImg: {fileID: 555273491}
   balls:
   - {fileID: 1349292073}
@@ -6573,7 +6580,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.6045017, y: 0}
+  m_AnchoredPosition: {x: -0.22200203, y: 4.341999}
   m_SizeDelta: {x: 3.972, y: 7.472}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1993196965
@@ -6685,13 +6692,24 @@ MonoBehaviour:
   m_FillRect: {fileID: 984306872}
   m_HandleRect: {fileID: 972573593}
   m_Direction: 0
-  m_MinValue: 1
+  m_MinValue: 0
   m_MaxValue: 5
   m_WholeNumbers: 1
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1853488906}
+        m_MethodName: SetTableImage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &2061069898

@@ -16,7 +16,6 @@ public class MenuController : MonoBehaviour {
 		transform.DOMove(t.localPosition,1f);
 		transform.DOPlay();
 		yield return new WaitForSeconds(1f);
-		print("pppppp");
 	}
 }
 public enum CameraState{

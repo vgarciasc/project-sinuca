@@ -9,11 +9,12 @@ public class SelectionMenu : MonoBehaviour {
 	[SerializeField] private GamePreferences gamePreferences;
 
 	[Header("Players")]
-	public Image[] img = new Image[2];
 	public Slider[] color = new Slider[2];
 	public Slider[] texture = new Slider[2];
+	public Button[] ready = new Button[2];
 
 	[Header("Table")]
+	public Image image;
 	public Slider type;
 	public Toggle modifiers;
 	public Toggle powerUps;
@@ -24,12 +25,22 @@ public class SelectionMenu : MonoBehaviour {
 	[Header("Fixed Values")]
 	public List<Color> colors;
 	public List<Texture> textures;
-
+	public List<Sprite> tableType;
 	public Image transitionImg;
 	public GameObject[] balls = new GameObject[2];
 
+	private Color[] readyColor = {Color.green, Color.yellow};
+
 	private void Start(){
 		SetSlidersMaxValues();
+
+		SetColor(0);
+		SetColor(1);
+
+		SetTexture(0);
+		SetTexture(1);
+
+		SetTableImage();
 	}
 	private void Update(){
 		balls[0].transform.Rotate(20*Time.deltaTime,20*Time.deltaTime,0);
@@ -58,6 +69,11 @@ public class SelectionMenu : MonoBehaviour {
 	public void SetReady(int playerId){
 		playerReady[playerId] = !playerReady[playerId];
 		CheckIfReady();
+		if(playerReady[playerId]){
+			ready[playerId].image.color = readyColor[1];
+		}else{
+			ready[playerId].image.color = readyColor[0];
+		}
 	}
 	public void SetTexture(int playerId){
 		balls[playerId].GetComponent<MeshRenderer>().material.mainTexture = textures[ (int)texture[playerId].value];
@@ -65,11 +81,16 @@ public class SelectionMenu : MonoBehaviour {
 	public void SetColor(int playerId){
 		balls[playerId].GetComponent<MeshRenderer>().material.color = colors[ (int)color[playerId].value ];
 	}
+	public void SetTableImage(){
+		image.sprite = tableType[(int)type.value];
+	}
 	public void SetSlidersMaxValues(){
 		color[0].maxValue = colors.Count - 1;
 		color[1].maxValue = colors.Count - 1;
 
 		texture[0].maxValue = textures.Count - 1;
 		texture[1].maxValue = textures.Count - 1;
+
+		type.maxValue = tableType.Count - 1;
 	}
 }
