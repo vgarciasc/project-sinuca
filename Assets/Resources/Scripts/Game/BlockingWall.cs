@@ -29,6 +29,7 @@ public class BlockingWall : MonoBehaviour {
 
 	Vector3 upPosition;
 	Vector3 downPosition;
+	bool inAnimation;
 	
 	void Start() {
 		upPosition = this.transform.localPosition;
@@ -62,13 +63,17 @@ public class BlockingWall : MonoBehaviour {
 	}
 
 	void ToggleWall(bool value) {
+		if (inAnimation) return;
+		
 		active = value;
 		wallCollider.enabled = value;
 		meshRenderer.material.DOColor(
 			value ? activeColor : inactiveColor, 
 			moveDuration);
+
+		inAnimation = true;
 		this.transform.DOLocalMove(
 			value ? upPosition : downPosition,
-			moveDuration);
+			moveDuration).OnComplete(() => {inAnimation = false;});
 	}
 }
