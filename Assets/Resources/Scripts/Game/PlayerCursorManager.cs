@@ -38,7 +38,7 @@ public class PlayerCursorManager : MonoBehaviour {
 		currentState = State.CUE;
 	}
 
-	Powerup GetCurrentPowerup() {
+	PowerupData GetCurrentPowerup() {
 		return powerupManager.playerPowerups[player.ball.playerID];
 	}
 
@@ -68,7 +68,7 @@ public class PlayerCursorManager : MonoBehaviour {
 		}
 	}
 
-	void UsePowerup(Powerup powerup) {
+	void UsePowerup(PowerupData powerup) {
 		if (powerup == null) return;
 
 		switch (powerup.kind) {

@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour {
 	List<Ball> balls = new List<Ball>();
 	[SerializeField]
 	List<Ball> playerStart = new List<Ball>();
+	[SerializeField]
+	PowerupSpawner powerupSpawner;
 	public List<PlayerUI> playerUI;
 
 	List<PlayerBall> playerBalls = new List<PlayerBall>();
@@ -76,6 +78,7 @@ public class GameController : MonoBehaviour {
 
 	IEnumerator GameLoop() {
 		while (GetWinnerID() == -1) {
+			powerupSpawner.SpawnRandomPowerup();
 			for (int i = 0; i < playerCount; i++) {
 				playerUI[i].ToggleTurn(true);
 				playerBalls[i].ToggleTurn(true);

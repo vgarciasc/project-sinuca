@@ -8,6 +8,7 @@ public class GenericAnimationFunctions : MonoBehaviour {
 	public bool fixRotation;
 	public bool rotate;
 	public float rotateTime;
+	public Vector3 rotationDirection;
 	public bool upDownIdle;
 	public float upDownIdleDistance;
 	public float upDownIdleDelay;
@@ -34,7 +35,13 @@ public class GenericAnimationFunctions : MonoBehaviour {
 		}
 
 		if (rotate) {
-			this.transform.DORotate(new Vector3(0, 0, 360), rotateTime, RotateMode.LocalAxisAdd)
+			Vector3 aux = new Vector3(
+				rotationDirection.x * 360,
+				rotationDirection.y * 360,
+				rotationDirection.z * 360
+			);
+
+			this.transform.DORotate(aux, rotateTime, RotateMode.LocalAxisAdd)
 				.SetEase(Ease.Linear)
 				.SetLoops(-1);
 		}

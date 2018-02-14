@@ -52,7 +52,7 @@ public class PlayerUI : MonoBehaviour {
 		icon.ToggleTurn(value, animation);
 	}
 
-	public void SetPowerup(Powerup powerup) {
+	public void SetPowerup(PowerupData powerup) {
 		icon.SetPowerup(powerup);
 	}
 }

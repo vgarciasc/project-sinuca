@@ -8,9 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b1a4381d1f55d458df21f3895af467, type: 3}
-  m_Name: HAND_OF_CONFUSION
+  m_Script: {fileID: 11500000, guid: 18c7078e0fa07654d89deb7f1f0d00de, type: 3}
+  m_Name: BLOCKING
   m_EditorClassIdentifier: 
-  kind: 3
-  name: HAND OF CONFUSION
-  sprite: {fileID: 21300026, guid: 5b32c2d36abe44540bed74c1f787033b, type: 3}
+  kind: 2
+  name: BLOCKING
+  sprite: {fileID: 21300010, guid: 26f5feb78ea6ef848bb204cedbf0443d, type: 3}

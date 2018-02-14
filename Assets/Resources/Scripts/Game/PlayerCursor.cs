@@ -6,11 +6,11 @@ public class PlayerCursor : MonoBehaviour {
 	[SerializeField]
 	GameObject blockingWallPreviewPrefab;
 
-	Powerup powerup;
+	PowerupData powerup;
 	public BlockingWallPreview blockingWallPreview { get; private set; }
 	public SelectableObstacle selected { get; private set; }
 
-	public void Init(Powerup powerup) {
+	public void Init(PowerupData powerup) {
 		this.powerup = powerup;
 		if (powerup != null && powerup.kind == PowerupEnum.HAND_OF_BLOCKING) {
 			var obj = Instantiate(blockingWallPreviewPrefab, this.transform.position, Quaternion.identity);

@@ -7,11 +7,11 @@ public class PowerupManager : MonoBehaviour {
 		return (PowerupManager) HushPuppy.safeFindComponent("GameController", "PowerupManager");
 	}
 
-	public List<Powerup> playerPowerups { get; private set; }
+	public List<PowerupData> playerPowerups { get; private set; }
 
 	[Header("List")]	
 	[SerializeField]
-	List<Powerup> database = new List<Powerup>();
+	List<PowerupData> database;
 
 	GameController gameController;
 
@@ -34,14 +34,14 @@ public class PowerupManager : MonoBehaviour {
 	}
 
 	void InitPowerups() {
-		playerPowerups = new List<Powerup>();
+		playerPowerups = new List<PowerupData>();
 		for (int i = 0; i < gameController.playerUI.Count; i++) {
 			playerPowerups.Add(null);
 			AddPowerup(i, null);
 		}
 	}
 
-	public void AddPowerup(int playerID, Powerup powerup) {
+	public void AddPowerup(int playerID, PowerupData powerup) {
 		playerPowerups[playerID] = powerup;
 		gameController.playerUI[playerID].SetPowerup(powerup);
 	}
@@ -49,5 +49,10 @@ public class PowerupManager : MonoBehaviour {
 	public void RemovePowerup(int playerID) {
 		playerPowerups[playerID] = null;
 		gameController.playerUI[playerID].SetPowerup(null);
+	}
+
+	public PowerupData GetRandomPowerup() {
+		int dice = Random.Range(0, database.Count);
+		return database[dice];
 	}
 }
