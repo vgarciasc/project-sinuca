@@ -29,7 +29,7 @@ public class SelectionMenu : MonoBehaviour {
 	public Image transitionImg;
 	public GameObject[] balls = new GameObject[2];
 
-	private Color[] readyColor = {Color.green, Color.yellow};
+	public Color[] readyColor = {Color.white, Color.yellow};
 
 	private void Start(){
 		SetSlidersMaxValues();
@@ -60,6 +60,8 @@ public class SelectionMenu : MonoBehaviour {
 		transitionImg.raycastTarget = true;
 		transitionImg.DOFade(1f,0.5f);
 		transform.DOPlay(); 
+
+		//Abre nova scene
 	}
 	public void CheckIfReady(){
 		if(playerReady[0] && playerReady[1]){
@@ -75,11 +77,17 @@ public class SelectionMenu : MonoBehaviour {
 			ready[playerId].image.color = readyColor[0];
 		}
 	}
+	public void SetReadyFalse(int playerId){
+		playerReady[playerId] = false;
+		ready[playerId].image.color = readyColor[0];
+	}
 	public void SetTexture(int playerId){
 		balls[playerId].GetComponent<MeshRenderer>().material.mainTexture = textures[ (int)texture[playerId].value];
+		SetReadyFalse(playerId);
 	}
 	public void SetColor(int playerId){
 		balls[playerId].GetComponent<MeshRenderer>().material.color = colors[ (int)color[playerId].value ];
+		SetReadyFalse(playerId);
 	}
 	public void SetTableImage(){
 		image.sprite = tableType[(int)type.value];
@@ -92,5 +100,8 @@ public class SelectionMenu : MonoBehaviour {
 		texture[1].maxValue = textures.Count - 1;
 
 		type.maxValue = tableType.Count - 1;
+	}
+	public void ExitGame(){
+		Application.Quit();
 	}
 }
