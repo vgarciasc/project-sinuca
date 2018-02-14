@@ -13,6 +13,7 @@ public class PlayerBall : MonoBehaviour {
 	public bool inTurn { get; private set; }
 	
 	CueStick cueStick;
+	PlayerCursorManager cursor;
 
 	bool hasShot;
 	bool isMoving;
@@ -41,6 +42,9 @@ public class PlayerBall : MonoBehaviour {
 		cs.SetPlayerBall(this);
 
 		cueStick = cs;
+		
+		cursor = GetComponent<PlayerCursorManager>();
+		cursor.SetCueStick(cs);
 	}
 
 	void HandleTurnOver() {

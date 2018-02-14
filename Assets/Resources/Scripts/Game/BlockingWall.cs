@@ -76,4 +76,8 @@ public class BlockingWall : MonoBehaviour {
 			value ? upPosition : downPosition,
 			moveDuration).OnComplete(() => {inAnimation = false;});
 	}
+
+	public void ToggleSelect(bool value) {
+		print(value ? "I'm in" : "I'm out");
+	}
 }

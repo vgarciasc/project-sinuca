@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212998637914612088}
   - component: {fileID: 114031681711937182}
   - component: {fileID: 114549804821910294}
+  - component: {fileID: 114039002408788234}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -63,6 +64,19 @@ MonoBehaviour:
   crudeAnimation: 0
   crudeAnimationDelay: 0.1
   crudeAnimationSprites: []
+--- !u!114 &114039002408788234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1560038886753168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 292efddcaaaf85c42ae5cfcbc173213b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorPrefab: {fileID: 1114468868561386, guid: dbb00e16f3c54b549a5c132e932fd8a6,
+    type: 2}
 --- !u!114 &114549804821910294
 MonoBehaviour:
   m_ObjectHideFlags: 1

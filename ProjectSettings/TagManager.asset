@@ -8,6 +8,8 @@ TagManager:
   - PlayerDatabase
   - Pocket
   - Ball
+  - CursorContainer
+  - Obstacle
   layers:
   - Default
   - TransparentFX

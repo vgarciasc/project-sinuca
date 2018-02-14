@@ -15,6 +15,7 @@ public class CueStick : MonoBehaviour {
 
 	bool aimingShot;
 	bool shotAnimation;
+	bool paused;
 
 	void Start() {
 		lineRenderer = this.GetComponentInChildren<LineRenderer>();
@@ -25,11 +26,13 @@ public class CueStick : MonoBehaviour {
 	}
 
 	void Update() {
-		HandleAim();
-		HandleShot();
+		if (!paused) {
+			HandleAim();
+			HandleShot();
+		}
 	}
 
-	void HandleAim() {
+	void HandleAim() {		
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		RaycastHit hit;
 		Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -110,5 +113,9 @@ public class CueStick : MonoBehaviour {
 			// vectors[2] = (Vector2.Reflect(direction, hit.normal)).normalized * 5f + (Vector2) hit.point;
 			lineRenderer.SetPositions(vectors);
 		}
+	}
+
+	public void TogglePause(bool value) {
+		paused = value;
 	}
 }
