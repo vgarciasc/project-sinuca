@@ -28,6 +28,7 @@ public class PowerupSpawner : MonoBehaviour {
 	}
 
 	Vector3 GetRandomPosition() {
+		PopulatePositions();
 		int dice = -1;
 
 		do {
@@ -39,6 +40,7 @@ public class PowerupSpawner : MonoBehaviour {
 	}
 
 	public void SpawnRandomPowerup() {
+		manager = PowerupManager.GetPowerupManager();
 		SpawnPowerup(manager.GetRandomPowerup());
 	}
 
