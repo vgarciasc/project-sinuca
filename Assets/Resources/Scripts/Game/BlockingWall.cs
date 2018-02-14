@@ -39,9 +39,7 @@ public class BlockingWall : MonoBehaviour, SelectableObstacle {
 		ToggleWall(false);
 	}
 
-	void OnTriggerEnter(Collider collider) {
-		var obj = collider.gameObject;
-		
+	void MarkEnter(GameObject obj) {
 		if (obj.tag == "Ball") {
 			if (!active) {
 				inside.Add(obj);
@@ -51,16 +49,34 @@ public class BlockingWall : MonoBehaviour, SelectableObstacle {
 		}
 	}
 
+	void MarkExit(GameObject obj) {
+		if (obj.tag == "Ball") {
+			if (!active) {
+				inside.Add(obj);
+			} else {
+				ToggleWall(false);
+			}
+		}
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		var obj = collision.gameObject;
+		MarkEnter(obj);
+	}
+
+	void OnCollisionExit(Collision collision) {
+		var obj = collision.gameObject;
+		MarkExit(obj);
+	}
+
+	void OnTriggerEnter(Collider collider) {
+		var obj = collider.gameObject;
+		MarkEnter(obj);
+	}
+
 	void OnTriggerExit(Collider collider) {
 		var obj = collider.gameObject;
-
-		if (obj.tag == "Ball" && !active && inside.Contains(obj)) {
-			inside.Remove(obj);
-
-			if (inside.Count == 0) {
-				ToggleWall(true);
-			}		
-		}
+		MarkExit(obj);
 	}
 
 	void ToggleWall(bool value) {
@@ -82,7 +98,7 @@ public class BlockingWall : MonoBehaviour, SelectableObstacle {
 		if (meshRenderer == null) {
 			return;
 		}
-		
+
 		Color color = active ? activeColor : inactiveColor;
 
 		if (hovering != value) {

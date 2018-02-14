@@ -24,6 +24,12 @@ public class Ball : MonoBehaviour {
 	public int playerID { get; private set; }
 	public bool isPlayer { get; private set; }
 
+	Material originalMaterial;
+
+	void Start() {
+		originalMaterial = mr.material;
+	}
+
 	public void SetPlayerID(int playerID) {
 		this.playerID = playerID;
 		SetPlayerData(PlayerDatabase.GetPlayerDatabase().GetPlayerDataByID(playerID));

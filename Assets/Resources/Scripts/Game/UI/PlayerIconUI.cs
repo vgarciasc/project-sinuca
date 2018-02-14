@@ -24,6 +24,12 @@ public class PlayerIconUI : MonoBehaviour {
 	}
 
 	public void SetPowerup(Powerup powerup) {
-		powerupImage.sprite = powerup == null ? null : powerup.sprite;
+		if (powerup == null) {
+			powerupImage.enabled = false;
+			return;
+		}
+		
+		powerupImage.enabled = true;
+		powerupImage.sprite = powerup.sprite;
 	}
 }

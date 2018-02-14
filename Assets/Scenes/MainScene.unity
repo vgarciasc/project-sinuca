@@ -572,7 +572,7 @@ Prefab:
     - target: {fileID: 224439242444114982, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 906.0403
+      value: 224.88478
       objectReference: {fileID: 0}
     - target: {fileID: 224982127636471012, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
@@ -703,6 +703,21 @@ Prefab:
         type: 2}
       propertyPath: m_LocalPosition.y
       value: 29.975
+      objectReference: {fileID: 0}
+    - target: {fileID: 224439242444114982, guid: 4bc166886434cc84ba846a0cda54e6c7,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236846675257028, guid: 4bc166886434cc84ba846a0cda54e6c7,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225849771412379396, guid: 4bc166886434cc84ba846a0cda54e6c7,
+        type: 2}
+      propertyPath: m_Alpha
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bc166886434cc84ba846a0cda54e6c7, type: 2}
@@ -916,7 +931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 555d3344531fde547b63b266ffa838a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScore: 6
+  maxScore: 3
   gameOver: {fileID: 1439444836}
   balls:
   - {fileID: 611234449}
@@ -967,6 +982,7 @@ MonoBehaviour:
   database:
   - {fileID: 11400000, guid: 17e3d5c03e582b74090a6ef96dc832c5, type: 2}
   - {fileID: 11400000, guid: fff903ae6840a80488df48e0880fe7b8, type: 2}
+  - {fileID: 11400000, guid: 4e915e94a2eeb584598dab3eb0f67293, type: 2}
 --- !u!1001 &450698311
 Prefab:
   m_ObjectHideFlags: 0

@@ -92,4 +92,9 @@ public class PlayerBall : MonoBehaviour {
 			}
 		}
 	}
+
+	public void Destroy() {
+		ToggleCueStick(false);
+		Destroy(this.gameObject);
+	}
 }

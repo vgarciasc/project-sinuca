@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour {
 	PlayerDatabase playerDatabase;
 
 	int playerCount = 2;
+	bool reassigningBalls;
 
 	#region Initialization
 	void Start() {
@@ -66,6 +67,11 @@ public class GameController : MonoBehaviour {
 		var playerBall = ball.GetComponentInChildren<PlayerBall>();
 		return playerBall;
 	}
+
+	void RemovePlayerBall(PlayerBall playerBall) {
+		playerBall.ball.SetPlayerID(playerBall.ball.playerID);
+		playerBall.Destroy();
+	}
 	#endregion
 
 	IEnumerator GameLoop() {
@@ -74,7 +80,7 @@ public class GameController : MonoBehaviour {
 				playerUI[i].ToggleTurn(true);
 				playerBalls[i].ToggleTurn(true);
 				
-				yield return new WaitWhile(() => playerBalls[i].inTurn);
+				yield return new WaitWhile(() => playerBalls[i].inTurn || reassigningBalls);
 				yield return new WaitWhile(() => AnyBallMoving());
 
 				playerBalls[i].ToggleTurn(false);
@@ -95,7 +101,7 @@ public class GameController : MonoBehaviour {
 		playerUI[playerID].UpdateScore(playerScores[playerID]);
 	}
 
-	void ReassignPlayerBall(Ball originalBall) {
+	void ReassignPlayerBall(Ball originalBall, bool inTurn = false) {
 		List<Ball> candidateBalls = new List<Ball>();
 		for (int i = 0; i < balls.Count; i++) {
 			if (balls[i].gameObject.activeSelf 
@@ -109,6 +115,8 @@ public class GameController : MonoBehaviour {
 			int dice = Random.Range(0, candidateBalls.Count);
 			Ball elected = candidateBalls[dice];
 			SetPlayerBall(elected);
+
+			elected.GetComponentInChildren<PlayerBall>().ToggleTurn(inTurn);
 
 			for (int i = 0; i < playerBalls.Count; i++) {
 				if (playerBalls[i].ball != null && playerBalls[i].ball.playerID == originalBall.playerID) {
@@ -176,5 +184,21 @@ public class GameController : MonoBehaviour {
 
 		AddPlayerScore(ball.playerID, 1);
 		UpdatePlayerUI(ball.playerID);
+	}
+
+	public void RemoveAndReassignPlayers(int player_caster_ID) {
+		reassigningBalls = true;
+
+		for (int i = 0; i < playerCount; i++) {
+			var ball = playerBalls[i].ball;
+			RemovePlayerBall(playerBalls[i]);
+			ReassignPlayerBall(ball);
+
+			if (i == player_caster_ID) {
+				playerBalls[i].ToggleTurn(true);
+			}
+		}
+
+		reassigningBalls = false;
 	}
 }

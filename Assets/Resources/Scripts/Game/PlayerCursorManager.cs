@@ -15,9 +15,11 @@ public class PlayerCursorManager : MonoBehaviour {
 	CueStick cueStick;
 	PlayerCursor cursor;
 	PowerupManager powerupManager;
+	GameController gameController;
 
 	void Start() {
 		powerupManager = PowerupManager.GetPowerupManager();
+		gameController = GameController.GetGameController();
 	}
 
 	void Update() {
@@ -81,6 +83,11 @@ public class PlayerCursorManager : MonoBehaviour {
 					cursor.selected.RemoveObstacle();
 					powerupManager.RemovePowerup(player.ball.playerID);
 				}
+				return;
+			case PowerupEnum.HAND_OF_CONFUSION:
+				OnRightClick();
+				powerupManager.RemovePowerup(player.ball.playerID);
+				gameController.RemoveAndReassignPlayers(player.ball.playerID);
 				return;
 		}
 	}
