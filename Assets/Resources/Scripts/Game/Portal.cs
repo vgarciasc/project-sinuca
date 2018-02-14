@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-public class Portal : MonoBehaviour {
+public class Portal : MonoBehaviour, SelectableObstacle {
+
+	[Header("References")]
+	public MeshRenderer meshRenderer;
 
 	[Header("Mechanics")]
 	[SerializeField]
@@ -14,12 +18,14 @@ public class Portal : MonoBehaviour {
 	float rotationSpeed;
 
 	public float angle { get; private set; }
+	static List<Ball> inCooldown = new List<Ball>();
 
 	PortalManager manager;
-	static List<Ball> inCooldown = new List<Ball>();
+	Color originalColor;
 
 	void Start() {
 		manager = this.GetComponentInParent<PortalManager>();
+		originalColor = meshRenderer.material.color;
 	}
 
 	void Update() {
@@ -65,5 +71,29 @@ public class Portal : MonoBehaviour {
 		if (inCooldown.Contains(ball)) {
 			inCooldown.Remove(ball);
 		}
+	}
+
+	bool selected;
+	bool beingRemoved;
+
+	public void ToggleSelection(bool value) {
+		if (meshRenderer == null) return;
+		if (value == selected) return;
+
+		selected = value;
+		
+		manager.GetExit(this).ToggleSelection(value);
+		Color newColor = value ? originalColor + new Color(0.3f, 0.3f, 0.3f) : originalColor;
+		meshRenderer.material.DOColor(newColor, 0.3f);
+	}
+
+	public void RemoveObstacle() {
+		if (beingRemoved) return;
+		
+		beingRemoved = true;
+		manager.GetExit(this).RemoveObstacle();
+		meshRenderer.material.DOColor(Color.clear, 0.3f).OnComplete(() => {
+			Destroy(this.gameObject);
+		});
 	}
 }

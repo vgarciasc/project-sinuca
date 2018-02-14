@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850b6c5db9ad1ac46959045604cd024d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockingWallPreviewPrefab: {fileID: 1933378462088732, guid: cc710883d2568af4fbfbf54cfb780aad,
+  blockingWallPreviewPrefab: {fileID: 1933378462088732, guid: baff57b000f5e7b4f8f217a9bdbebef2,
     type: 2}
 --- !u!114 &114643772876907984
 MonoBehaviour:

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class BlockingWall : MonoBehaviour {
+public class BlockingWall : MonoBehaviour, SelectableObstacle {
 
 	bool active;
 	List<GameObject> inside = new List<GameObject>();
@@ -30,6 +30,7 @@ public class BlockingWall : MonoBehaviour {
 	Vector3 upPosition;
 	Vector3 downPosition;
 	bool inAnimation;
+	bool hovering;
 	
 	void Start() {
 		upPosition = this.transform.localPosition;
@@ -77,7 +78,30 @@ public class BlockingWall : MonoBehaviour {
 			moveDuration).OnComplete(() => {inAnimation = false;});
 	}
 
-	public void ToggleSelect(bool value) {
-		print(value ? "I'm in" : "I'm out");
+	public void ToggleSelection(bool value) {
+		if (meshRenderer == null) {
+			return;
+		}
+		
+		Color color = active ? activeColor : inactiveColor;
+
+		if (hovering != value) {
+			Color newColor = value ? color + new Color(0.5f, 0.5f, 0.5f) : color;
+			meshRenderer.material.DOColor(
+				newColor,
+				0.25f);
+		}
+
+		hovering = value;
+	}
+
+	public void RemoveObstacle() {
+		meshRenderer.material.DOColor(Color.clear, 0.3f).OnComplete(() => {
+			Destroy();
+		});
+	}
+
+	void Destroy() {
+		Destroy(this.gameObject);
 	}
 }

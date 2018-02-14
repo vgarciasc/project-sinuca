@@ -5,20 +5,29 @@ using UnityEngine;
 public class PlayerCursorManager : MonoBehaviour {
 	public enum State { NONE, CUE, POWERUP }
 
+	[Header("References")]
 	[SerializeField]
 	GameObject cursorPrefab;
+	[SerializeField]
+	PlayerBall player;
 
-	Powerup currentPowerup = Powerup.HAND_OF_BLOCKING;
 	State currentState = State.NONE;
 	CueStick cueStick;
 	PlayerCursor cursor;
+	PowerupManager powerupManager;
+
+	void Start() {
+		powerupManager = PowerupManager.GetPowerupManager();
+	}
 
 	void Update() {
-		if (Input.GetButtonDown("Fire1")) {
-			OnLeftClick();
-		}
-		if (Input.GetButtonDown("Fire2")) {
-			OnRightClick();
+		if (player.inTurn) {
+			if (Input.GetButtonDown("Fire1")) {
+				OnLeftClick();
+			}
+			if (Input.GetButtonDown("Fire2")) {
+				OnRightClick();
+			}
 		}
 	}
 
@@ -27,13 +36,16 @@ public class PlayerCursorManager : MonoBehaviour {
 		currentState = State.CUE;
 	}
 
+	Powerup GetCurrentPowerup() {
+		return powerupManager.playerPowerups[player.ball.playerID];
+	}
+
 	void OnLeftClick() {
+		var currentPowerup = GetCurrentPowerup();
+
 		switch (currentState) {
 			case State.POWERUP:
-				if (cursor.selected && currentPowerup != Powerup.NONE) {
-					cursor.UsePowerup(currentPowerup);
-					currentPowerup = Powerup.NONE;
-				}
+				UsePowerup(currentPowerup);
 				break;
 		}
 	}
@@ -45,22 +57,57 @@ public class PlayerCursorManager : MonoBehaviour {
 				break;
 			case State.CUE:
 				currentState = State.POWERUP;
-				cueStick.TogglePause(true);
-				InitCursor();
+				EnablePowerupMode();
 				break;
 			case State.POWERUP:
 				currentState = State.CUE;
-				cueStick.TogglePause(false);
-				Destroy(cursor);
+				DisablePowerupMode();
 				break;
 		}
 	}
 
+	void UsePowerup(Powerup powerup) {
+		if (powerup == null) return;
+
+		switch (powerup.kind) {
+			case PowerupEnum.HAND_OF_BLOCKING:
+				if (cursor.blockingWallPreview.valid) {
+					cursor.blockingWallPreview.InstantiatePreview();
+					powerupManager.RemovePowerup(player.ball.playerID);
+				}
+				return;
+			case PowerupEnum.HAND_OF_DESTRUCTION:
+				if (cursor.selected != null) {
+					cursor.selected.RemoveObstacle();
+					powerupManager.RemovePowerup(player.ball.playerID);
+				}
+				return;
+		}
+	}
+
 	void InitCursor() {
+		var currentPowerup = GetCurrentPowerup();
+
 		var obj = Instantiate(cursorPrefab, 
 			GameObject.FindGameObjectWithTag("CursorContainer").transform, 
 			false);
 		cursor = obj.GetComponentInChildren<PlayerCursor>();
 		cursor.Init(currentPowerup);
+	}
+
+	void EnablePowerupMode() {
+		if (cueStick != null) {
+			cueStick.TogglePause(true);
+		}
+
+		InitCursor();
+	}
+
+	void DisablePowerupMode() {
+		if (cueStick != null) {
+			cueStick.TogglePause(false);
+		}
+
+		cursor.Destroy();
 	}
 }

@@ -7,7 +7,9 @@ using DG.Tweening;
 public class PlayerIconUI : MonoBehaviour {
 	[SerializeField]
 	Image glowBackground;
-	
+	[SerializeField]
+	Image powerupImage;
+
 	public void ToggleTurn(bool value, bool animation) {
 		if (!animation) {
 			glowBackground.DOFade(value ? 1f : 0f, 0f);
@@ -19,5 +21,9 @@ public class PlayerIconUI : MonoBehaviour {
 		} else {
 			GenericAnimationFunctions.FadeOut(glowBackground, 0.5f);
 		}
+	}
+
+	public void SetPowerup(Powerup powerup) {
+		powerupImage.sprite = powerup == null ? null : powerup.sprite;
 	}
 }

@@ -51,4 +51,8 @@ public class PlayerUI : MonoBehaviour {
 	public void ToggleTurn(bool value, bool animation = true) {
 		icon.ToggleTurn(value, animation);
 	}
+
+	public void SetPowerup(Powerup powerup) {
+		icon.SetPowerup(powerup);
+	}
 }

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
+	public static GameController GetGameController() {
+		return (GameController) HushPuppy.safeFindComponent("GameController", "GameController");
+	}
+	
 	[Header("Game Control")]
 	[SerializeField]
 	int maxScore = 6;
@@ -11,12 +15,11 @@ public class GameController : MonoBehaviour {
 	[SerializeField]
 	GameOverUI gameOver;	
 	[SerializeField]
-	List<PlayerUI> playerUI = new List<PlayerUI>();
-	[SerializeField]
 	List<Ball> balls = new List<Ball>();
 	[SerializeField]
 	List<Ball> playerStart = new List<Ball>();
-	
+	public List<PlayerUI> playerUI;
+
 	List<PlayerBall> playerBalls = new List<PlayerBall>();
 	List<int> playerScores = new List<int>();
 	PlayerDatabase playerDatabase;
@@ -37,6 +40,7 @@ public class GameController : MonoBehaviour {
 		foreach (var k in playerUI) {
 			k.InitScore(maxScore);
 			k.Init(playerUI.IndexOf(k));
+			k.SetPowerup(null);
 			playerScores.Add(0);
 		}
 

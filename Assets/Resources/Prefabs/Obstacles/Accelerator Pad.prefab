@@ -107,4 +107,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904aeaaae9264ac44b41bf500b198d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 23047087770136448}
   intensity: 5
