@@ -6124,11 +6124,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c1b186a4e5b4e46802cdc63161f21f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colors: []
-  textures: []
-  tableType: []
-  transitionImg: {fileID: 0}
-  gamePreferences: {fileID: 0}
+  colors:
+  - {r: 0.8308824, g: 0.15884516, b: 0.15884516, a: 1}
+  - {r: 0.07417818, g: 0.29262027, b: 0.7205882, a: 1}
+  - {r: 0.13772829, g: 0.875, b: 0.077205904, a: 1}
+  - {r: 0.9338235, g: 0.49295652, b: 0.020599067, a: 1}
+  - {r: 0.9264706, g: 0.061310556, b: 0.8668044, a: 1}
+  textures:
+  - {fileID: 2800000, guid: a1d0ed1f522c3e24e926fb9491237fb7, type: 3}
+  - {fileID: 2800000, guid: 7f72ce56d77df4648a022205114073c9, type: 3}
+  - {fileID: 2800000, guid: 051e5b37d05fdf447b507a36b9d46184, type: 3}
+  - {fileID: 2800000, guid: dca98b472d7069e44b653f6a00e9c643, type: 3}
+  tableType:
+  - {fileID: 21300000, guid: c0351db51f82c3c4b9f05baabff7175e, type: 3}
+  - {fileID: 21300000, guid: 281e503c873431142a924b1526ff0a7d, type: 3}
+  transitionImg: {fileID: 555273491}
+  gamePreferences: {fileID: 11400000, guid: c41658f0741ca1142aab0fcba5cc23b4, type: 2}
 --- !u!1 &1554471304
 GameObject:
   m_ObjectHideFlags: 0

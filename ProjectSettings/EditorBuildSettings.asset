@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Examples/ManyMouseExample.unity
-    guid: 403260ee75b36db468a5049c677ff7a1
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 4981ea559a73aaf40af1c74e5bc87ce5
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: de308f5809c6e9f47acfb4f985d40eff
