@@ -2369,7 +2369,8 @@ Prefab:
       propertyPath: inactiveColor.a
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114136190638109224, guid: 6e3ad0f31de474f478f151eeb30361f1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6e3ad0f31de474f478f151eeb30361f1, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1666227502 stripped

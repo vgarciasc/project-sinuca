@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
 public class SelectionMenu : MonoBehaviour {
-
-	[SerializeField] private GamePreferences gamePreferences;
+	GamePreferencesDatabase gpd;
 
 	[Header("Players")]
 	public Slider[] color = new Slider[2];
@@ -21,17 +21,11 @@ public class SelectionMenu : MonoBehaviour {
 
 	[Header("Ready?")]
 	public bool[] playerReady = {false,false};
-
-	[Header("Fixed Values")]
-	public List<Color> colors;
-	public List<Texture> textures;
-	public List<Sprite> tableType;
-	public Image transitionImg;
 	public GameObject[] balls = new GameObject[2];
-
 	public Color[] readyColor = {Color.white, Color.yellow};
 
 	private void Start(){
+		gpd = GamePreferencesDatabase.GetGamePreferencesDatabase();
 		SetSlidersMaxValues();
 
 		SetColor(0);
@@ -47,21 +41,21 @@ public class SelectionMenu : MonoBehaviour {
 		balls[1].transform.Rotate(20*Time.deltaTime,20*Time.deltaTime,0);
 	}
 	public void SetPlayerPreference(){
-		gamePreferences.texture[0] = (int) texture[0].value;
-		gamePreferences.texture[1] = (int) texture[1].value;
-		gamePreferences.color[0] = (int) color[0].value;
-		gamePreferences.color[1] = (int) color[1].value;
+		gpd.gamePreferences.texture[0] = (int) texture[0].value;
+		gpd.gamePreferences.texture[1] = (int) texture[1].value;
+		gpd.gamePreferences.color[0] = (int) color[0].value;
+		gpd.gamePreferences.color[1] = (int) color[1].value;
 
-		gamePreferences.type = (int)type.value;
-		gamePreferences.modifiers = modifiers.isOn;
-		gamePreferences.powerUps = powerUps.isOn;
+		gpd.gamePreferences.type = (int)type.value;
+		gpd.gamePreferences.modifiers = modifiers.isOn;
+		gpd.gamePreferences.powerUps = powerUps.isOn;
 
 		DOTween.Init();
-		transitionImg.raycastTarget = true;
-		transitionImg.DOFade(1f,0.5f);
-		transform.DOPlay(); 
+		gpd.transitionImg.raycastTarget = true;
+		gpd.transitionImg.DOFade(1f,0.5f);
+		transform.DOPlay();
 
-		//Abre nova scene
+		SceneManager.LoadScene("MainScene");
 	}
 	public void CheckIfReady(){
 		if(playerReady[0] && playerReady[1]){
@@ -82,24 +76,24 @@ public class SelectionMenu : MonoBehaviour {
 		ready[playerId].image.color = readyColor[0];
 	}
 	public void SetTexture(int playerId){
-		balls[playerId].GetComponent<MeshRenderer>().material.mainTexture = textures[ (int)texture[playerId].value];
+		balls[playerId].GetComponent<MeshRenderer>().material.mainTexture = gpd.textures[ (int)texture[playerId].value];
 		SetReadyFalse(playerId);
 	}
 	public void SetColor(int playerId){
-		balls[playerId].GetComponent<MeshRenderer>().material.color = colors[ (int)color[playerId].value ];
+		balls[playerId].GetComponent<MeshRenderer>().material.color = gpd.colors[ (int)color[playerId].value ];
 		SetReadyFalse(playerId);
 	}
 	public void SetTableImage(){
-		image.sprite = tableType[(int)type.value];
+		image.sprite = gpd.tableType[(int)type.value];
 	}
 	public void SetSlidersMaxValues(){
-		color[0].maxValue = colors.Count - 1;
-		color[1].maxValue = colors.Count - 1;
+		color[0].maxValue = gpd.colors.Count - 1;
+		color[1].maxValue = gpd.colors.Count - 1;
 
-		texture[0].maxValue = textures.Count - 1;
-		texture[1].maxValue = textures.Count - 1;
+		texture[0].maxValue = gpd.textures.Count - 1;
+		texture[1].maxValue = gpd.textures.Count - 1;
 
-		type.maxValue = tableType.Count - 1;
+		type.maxValue = gpd.tableType.Count - 1;
 	}
 	public void ExitGame(){
 		Application.Quit();

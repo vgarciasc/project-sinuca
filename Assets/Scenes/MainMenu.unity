@@ -1678,13 +1678,13 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: -1
+  m_RenderingPath: 3
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
@@ -6061,6 +6061,74 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1489217783}
+--- !u!1001 &1507176040
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4427178347645796, guid: 6ed4c3d30ac09424d8e24ef3ace98fcd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427178347645796, guid: 6ed4c3d30ac09424d8e24ef3ace98fcd, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427178347645796, guid: 6ed4c3d30ac09424d8e24ef3ace98fcd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427178347645796, guid: 6ed4c3d30ac09424d8e24ef3ace98fcd, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427178347645796, guid: 6ed4c3d30ac09424d8e24ef3ace98fcd, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427178347645796, guid: 6ed4c3d30ac09424d8e24ef3ace98fcd, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427178347645796, guid: 6ed4c3d30ac09424d8e24ef3ace98fcd, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427178347645796, guid: 6ed4c3d30ac09424d8e24ef3ace98fcd, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278490050439708, guid: 6ed4c3d30ac09424d8e24ef3ace98fcd, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000,
+        type: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6ed4c3d30ac09424d8e24ef3ace98fcd, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &1507176041 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1278490050439708, guid: 6ed4c3d30ac09424d8e24ef3ace98fcd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1507176040}
+--- !u!114 &1507176042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1507176041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c1b186a4e5b4e46802cdc63161f21f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colors: []
+  textures: []
+  tableType: []
+  transitionImg: {fileID: 0}
+  gamePreferences: {fileID: 0}
 --- !u!1 &1554471304
 GameObject:
   m_ObjectHideFlags: 0
@@ -6821,7 +6889,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ded9ec1cbbae34da98be3800f41f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePreferences: {fileID: 11400000, guid: c41658f0741ca1142aab0fcba5cc23b4, type: 2}
   color:
   - {fileID: 1650162877}
   - {fileID: 1007314934}
@@ -6836,21 +6903,6 @@ MonoBehaviour:
   modifiers: {fileID: 211943841}
   powerUps: {fileID: 1162347842}
   playerReady: 0000
-  colors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 1, b: 0.17241383, a: 1}
-  - {r: 0, g: 0.13103437, b: 1, a: 1}
-  - {r: 1, g: 0.93103445, b: 0, a: 1}
-  - {r: 1, g: 0, b: 0.84827566, a: 1}
-  textures:
-  - {fileID: 2800000, guid: 93d6f74f2ef358e41989d4152b195f88, type: 3}
-  - {fileID: 2800000, guid: 64734c9bc6df32149a0c9cb0b18693e1, type: 3}
-  - {fileID: 2800000, guid: 7bbfb8818476e4641ba3e75f5225eb69, type: 3}
-  - {fileID: 2800000, guid: 05ffd580f33f74644a6025ec196860af, type: 3}
-  tableType:
-  - {fileID: 21300000, guid: c0351db51f82c3c4b9f05baabff7175e, type: 3}
-  - {fileID: 21300000, guid: 281e503c873431142a924b1526ff0a7d, type: 3}
-  transitionImg: {fileID: 555273491}
   balls:
   - {fileID: 1349292073}
   - {fileID: 1214611531}
