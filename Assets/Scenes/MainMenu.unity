@@ -6135,6 +6135,10 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 7f72ce56d77df4648a022205114073c9, type: 3}
   - {fileID: 2800000, guid: 051e5b37d05fdf447b507a36b9d46184, type: 3}
   - {fileID: 2800000, guid: dca98b472d7069e44b653f6a00e9c643, type: 3}
+  - {fileID: 2800000, guid: 8cabdf88dba852e408d430bbbd908ccf, type: 3}
+  - {fileID: 2800000, guid: 942ab411d5cba314aad972eb55e66576, type: 3}
+  - {fileID: 2800000, guid: 94bf0ef5451997e42a934b712ca591fd, type: 3}
+  - {fileID: 2800000, guid: ee34503d08fcf3147a8d4d578f853f58, type: 3}
   tableType:
   - {fileID: 21300000, guid: c0351db51f82c3c4b9f05baabff7175e, type: 3}
   - {fileID: 21300000, guid: 281e503c873431142a924b1526ff0a7d, type: 3}
