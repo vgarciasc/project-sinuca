@@ -1118,6 +1118,11 @@ Prefab:
       propertyPath: m_Name
       value: Accelerator Pad (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 23047087770136448, guid: 867c29cbed02d4447b144ef17c399e4e,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 611b74e8e6dbca848b3e11cf95098ea7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 867c29cbed02d4447b144ef17c399e4e, type: 2}
   m_IsPrefabParent: 0
@@ -1429,6 +1434,11 @@ Prefab:
       propertyPath: m_Name
       value: Accelerator Pad (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 23047087770136448, guid: 867c29cbed02d4447b144ef17c399e4e,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 611b74e8e6dbca848b3e11cf95098ea7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 867c29cbed02d4447b144ef17c399e4e, type: 2}
   m_IsPrefabParent: 0
@@ -1492,6 +1502,11 @@ Prefab:
       propertyPath: m_Name
       value: Accelerator Pad (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 23047087770136448, guid: 867c29cbed02d4447b144ef17c399e4e,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 611b74e8e6dbca848b3e11cf95098ea7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 867c29cbed02d4447b144ef17c399e4e, type: 2}
   m_IsPrefabParent: 0
@@ -1765,6 +1780,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.6298898
       objectReference: {fileID: 0}
+    - target: {fileID: 23047087770136448, guid: 867c29cbed02d4447b144ef17c399e4e,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 611b74e8e6dbca848b3e11cf95098ea7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 867c29cbed02d4447b144ef17c399e4e, type: 2}
   m_IsPrefabParent: 0
@@ -2595,6 +2615,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 0.99999994
       objectReference: {fileID: 0}
+    - target: {fileID: 23066375624433788, guid: 6e3ad0f31de474f478f151eeb30361f1,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 00e22a39bf4fa7f4fa88053991d70e87, type: 2}
     m_RemovedComponents:
     - {fileID: 114136190638109224, guid: 6e3ad0f31de474f478f151eeb30361f1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6e3ad0f31de474f478f151eeb30361f1, type: 2}
@@ -2751,6 +2776,11 @@ Prefab:
       propertyPath: m_Name
       value: Blocking Wall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 23066375624433788, guid: 6e3ad0f31de474f478f151eeb30361f1,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 00e22a39bf4fa7f4fa88053991d70e87, type: 2}
     m_RemovedComponents:
     - {fileID: 114136190638109224, guid: 6e3ad0f31de474f478f151eeb30361f1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6e3ad0f31de474f478f151eeb30361f1, type: 2}
