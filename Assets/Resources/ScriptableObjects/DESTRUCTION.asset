@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kind: 1
   name: DESTRUCTION
-  sprite: {fileID: 21300020, guid: 26f5feb78ea6ef848bb204cedbf0443d, type: 3}
+  sprite: {fileID: 21300000, guid: 481f82496ece7c848ad2dd175c7618ba, type: 3}

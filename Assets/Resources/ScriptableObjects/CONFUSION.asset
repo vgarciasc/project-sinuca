@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kind: 3
   name: CONFUSION
-  sprite: {fileID: 21300014, guid: 26f5feb78ea6ef848bb204cedbf0443d, type: 3}
+  sprite: {fileID: 21300000, guid: 6f70db8c058a4d7488c956a56819e2f4, type: 3}

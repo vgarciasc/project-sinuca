@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kind: 2
   name: BLOCKING
-  sprite: {fileID: 21300010, guid: 26f5feb78ea6ef848bb204cedbf0443d, type: 3}
+  sprite: {fileID: 21300000, guid: 231081d18b8ca88448cf1cacb2aab79c, type: 3}
