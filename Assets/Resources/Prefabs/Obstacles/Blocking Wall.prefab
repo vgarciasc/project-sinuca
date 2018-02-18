@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 23066375624433788}
   - component: {fileID: 54538588947904156}
   - component: {fileID: 114330937733895966}
-  - component: {fileID: 114136190638109224}
   m_Layer: 10
   m_Name: Blocking Wall
   m_TagString: Obstacle
@@ -39,9 +38,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1843227444713868}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.51, y: 1.4, z: 0.04}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.311, y: 1.4, z: 0.043300033}
+  m_LocalScale: {x: 0.31928, y: 1, z: 1.73147}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -60,7 +59,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 35a0e0419ae8ce842b5d51de6ad3deda, type: 2}
+  - {fileID: 2100000, guid: 00e22a39bf4fa7f4fa88053991d70e87, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,17 +125,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114136190638109224
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1843227444713868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33f1dfdf11e6caa4da011685e8867ff6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114330937733895966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeColor: {r: 0.4590741, g: 0.7941176, b: 0.18685119, a: 1}
-  inactiveColor: {r: 0.46810123, g: 0.5441177, b: 0.471771, a: 0.128}
+  inactiveColor: {r: 0.46810123, g: 0.5441177, b: 0.471771, a: 1}
   wallCollider: {fileID: 65280081407889090}
   meshRenderer: {fileID: 23066375624433788}
   moveDistance: 0.6
