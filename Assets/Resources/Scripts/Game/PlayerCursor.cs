@@ -7,7 +7,7 @@ public class PlayerCursor : MonoBehaviour {
 	GameObject blockingWallPreviewPrefab;
 
 	PowerupData powerup;
-	public BlockingWallPreview blockingWallPreview { get; private set; }
+	public BlockingWallPreview blockingWallPreview;
 	public SelectableObstacle selected { get; private set; }
 
 	public void Init(PowerupData powerup) {
@@ -54,9 +54,9 @@ public class PlayerCursor : MonoBehaviour {
 		}
 	}
 
-	public void Destroy() {
-		if (blockingWallPreview) {
-			Destroy(blockingWallPreview);
+	public void DestroyMe() {
+		if (blockingWallPreview != null) {
+			Destroy(blockingWallPreview.gameObject);
 		}
 
 		Destroy(this.gameObject);

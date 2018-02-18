@@ -20,8 +20,11 @@ public class GameOverUI : MonoBehaviour {
 			victoryText.text = "Empate!";
 		}
 		else {
-			PlayerData data = PlayerDatabase.GetPlayerDatabase().GetPlayerDataByID(playerID);
-			banner.color = data.color;
+			if (GameObject.FindGameObjectWithTag("GamePreferences") != null) {
+				Color color = GamePreferencesDatabase.GetGamePreferencesDatabase().GetColorByPlayerID(playerID);
+				banner.color = color;
+			}
+			
 			victoryText.text = "Jogador #" + "<color=#BABABA>" + (playerID + 1) + "</color> venceu!";
 		}
 
@@ -31,7 +34,10 @@ public class GameOverUI : MonoBehaviour {
 	}
 
 	IEnumerator ResetGame() {
+		var obj = HushPuppy.safeFind("GamePreferences");
+		if (obj != null) Destroy(obj);
+		
 		yield return new WaitForSeconds(2f);
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		SceneManager.LoadScene("MainMenu");
 	}
 }

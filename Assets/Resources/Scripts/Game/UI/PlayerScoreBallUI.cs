@@ -22,8 +22,8 @@ public class PlayerScoreBallUI : MonoBehaviour {
 		}
 	}
 
-	public void SetPlayerData(PlayerData data) {
-		image.color = data.color + new Color(0.3f, 0.3f, 0.3f);
+	public void SetPlayerColor(Color color) {
+		image.color = color + new Color(0.3f, 0.3f, 0.3f);
 	}
 
 	IEnumerator ScoreAnimation() {

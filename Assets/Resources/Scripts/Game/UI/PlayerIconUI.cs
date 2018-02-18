@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class PlayerIconUI : MonoBehaviour {
 	[SerializeField]
 	Image glowBackground;
 	[SerializeField]
 	Image powerupImage;
+	[SerializeField]
+	TextMeshProUGUI powerupName;
 
 	public void ToggleTurn(bool value, bool animation) {
 		if (!animation) {
@@ -26,10 +29,13 @@ public class PlayerIconUI : MonoBehaviour {
 	public void SetPowerup(PowerupData powerup) {
 		if (powerup == null) {
 			powerupImage.enabled = false;
+			powerupName.enabled = false;
 			return;
 		}
 		
 		powerupImage.enabled = true;
 		powerupImage.sprite = powerup.sprite;
+		powerupName.enabled = true;
+		powerupName.text = powerup.name;
 	}
 }

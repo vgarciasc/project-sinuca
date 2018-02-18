@@ -57,6 +57,7 @@ MonoBehaviour:
   fixRotation: 1
   rotate: 0
   rotateTime: 0
+  rotationDirection: {x: 0, y: 0, z: 0}
   upDownIdle: 0
   upDownIdleDistance: 0
   upDownIdleDelay: 0
@@ -91,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cueStickPrefab: {fileID: 1385179333439368, guid: 135d0b81b421151489651bb3f56bb8b3,
     type: 2}
+  forceModifier: 20
 --- !u!212 &212998637914612088
 SpriteRenderer:
   m_ObjectHideFlags: 1

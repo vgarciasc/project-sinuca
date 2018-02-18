@@ -18,4 +18,8 @@ public class GamePreferencesDatabase : MonoBehaviour {
 	void Start() {
 		DontDestroyOnLoad(this.gameObject);
 	}
+
+	public Color GetColorByPlayerID(int playerID) {
+		return colors[gamePreferences.color[playerID]];
+	}
 }

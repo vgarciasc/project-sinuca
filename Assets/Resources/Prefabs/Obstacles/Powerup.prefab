@@ -113,7 +113,7 @@ MonoBehaviour:
   fixRotation: 0
   rotate: 1
   rotateTime: 1.52
-  rotationDirection: {x: 1, y: 0.5, z: 0}
+  rotationDirection: {x: 1, y: 0, z: 1}
   upDownIdle: 0
   upDownIdleDistance: 0
   upDownIdleDelay: 0

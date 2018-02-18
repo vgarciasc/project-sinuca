@@ -22,15 +22,6 @@ public class PowerupManager : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.F)) {
-			AddPowerup(0, database[0]);
-		}
-		if (Input.GetKeyDown(KeyCode.G)) {
-			AddPowerup(0, database[1]);
-		}
-		if (Input.GetKeyDown(KeyCode.H)) {
-			AddPowerup(0, database[2]);
-		}
 	}
 
 	void InitPowerups() {

@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBall : MonoBehaviour {
+	[Header("References")]
 	[SerializeField]
 	GameObject cueStickPrefab;
+	
+	[Header("Mechanics")]
+	[SerializeField]
+	float forceModifier;
 
 	Rigidbody2D rb2d;
 	Rigidbody rb3d;
@@ -50,6 +55,7 @@ public class PlayerBall : MonoBehaviour {
 	void HandleTurnOver() {
 		if (inTurn && hasShot && !isMoving) {
 			inTurn = false;
+			cursor.EndTurn();
 		}
 	}
 
@@ -65,6 +71,7 @@ public class PlayerBall : MonoBehaviour {
 					Mathf.Cos(angle), 
 					Mathf.Sin(angle)).normalized 
 				* intensity
+				* forceModifier
 				* Mathf.Rad2Deg;
 			rb2d.AddForce(direction);
 		}
@@ -75,6 +82,7 @@ public class PlayerBall : MonoBehaviour {
 					0f,
 					Mathf.Sin(angle)).normalized 
 				* intensity / 20f
+				* forceModifier
 				* Mathf.Rad2Deg;
 			rb3d.AddForce(direction);
 		}

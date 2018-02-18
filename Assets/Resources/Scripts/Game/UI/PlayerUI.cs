@@ -24,9 +24,15 @@ public class PlayerUI : MonoBehaviour {
 	public void SetPlayerID(int playerID) {
 		this.playerID = playerID;
 
-		data = PlayerDatabase.GetPlayerDatabase().GetPlayerDataByID(playerID);
 		foreach (var k in scoreBalls) {
-			k.SetPlayerData(data);
+			Color color = Color.red;
+
+			var gpd = GameObject.FindGameObjectWithTag("GamePreferences");
+			if (gpd != null) {
+				color = GamePreferencesDatabase.GetGamePreferencesDatabase().GetColorByPlayerID(playerID);
+			}
+
+			k.SetPlayerColor(color);
 		}
 	}
 

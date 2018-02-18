@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: DESTRUCTION
   m_EditorClassIdentifier: 
   kind: 1
-  name: DESTRUCTION
+  name: DESATIVA
   sprite: {fileID: 21300000, guid: 481f82496ece7c848ad2dd175c7618ba, type: 3}

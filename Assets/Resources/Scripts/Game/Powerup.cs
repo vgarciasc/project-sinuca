@@ -11,6 +11,10 @@ public class Powerup : MonoBehaviour {
 	void Start() {
 		manager = PowerupManager.GetPowerupManager();
 		meshRenderer = GetComponentInChildren<MeshRenderer>();
+
+		Vector3 originalScale = this.transform.localScale;
+		this.transform.localScale = Vector3.zero;
+		this.transform.DOScale(originalScale, 0.25f).SetEase(Ease.InOutBack);
 	}
 
 	public void SetData(PowerupData data) {
@@ -34,6 +38,6 @@ public class Powerup : MonoBehaviour {
 			a = (() => {Destroy(this.gameObject);});
 		}
 
-		meshRenderer.material.DOColor(Color.clear, 0.3f).OnComplete(a);
+		this.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InOutBack);
 	}
 }

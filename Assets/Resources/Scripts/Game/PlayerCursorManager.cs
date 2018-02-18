@@ -76,12 +76,14 @@ public class PlayerCursorManager : MonoBehaviour {
 				if (cursor.blockingWallPreview.valid) {
 					cursor.blockingWallPreview.InstantiatePreview();
 					powerupManager.RemovePowerup(player.ball.playerID);
+					OnRightClick();
 				}
 				return;
 			case PowerupEnum.HAND_OF_DESTRUCTION:
 				if (cursor.selected != null) {
 					cursor.selected.RemoveObstacle();
 					powerupManager.RemovePowerup(player.ball.playerID);
+					OnRightClick();
 				}
 				return;
 			case PowerupEnum.HAND_OF_CONFUSION:
@@ -115,6 +117,12 @@ public class PlayerCursorManager : MonoBehaviour {
 			cueStick.TogglePause(false);
 		}
 
-		cursor.Destroy();
+		cursor.DestroyMe();
+	}
+
+	public void EndTurn() {
+		if (currentState == State.POWERUP) {
+			OnRightClick();
+		}
 	}
 }
