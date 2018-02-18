@@ -38,6 +38,6 @@ public class Powerup : MonoBehaviour {
 			a = (() => {Destroy(this.gameObject);});
 		}
 
-		this.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InOutBack);
+		this.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InOutBack).OnComplete(a);
 	}
 }
