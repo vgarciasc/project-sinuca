@@ -478,12 +478,12 @@ Prefab:
     - target: {fileID: 224992261414516936, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 324.5
+      value: 325.5
       objectReference: {fileID: 0}
     - target: {fileID: 224992261414516936, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 182.5
+      value: 183
       objectReference: {fileID: 0}
     - target: {fileID: 224992261414516936, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
@@ -938,6 +938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxScore: 3
+  chainTurns: 1
   gameOver: {fileID: 1439444836}
   balls:
   - {fileID: 611234449}
@@ -2066,7 +2067,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1217632609
 Transform:
   m_ObjectHideFlags: 0

@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour {
 	[Header("Game Control")]
 	[SerializeField]
 	int maxScore = 6;
+	[SerializeField]
+	bool chainTurns = true;
 
 	[Header("References")]
 	[SerializeField]
@@ -76,24 +78,42 @@ public class GameController : MonoBehaviour {
 	}
 	#endregion
 
+	List<int> currentlyPocketed = new List<int>();
+
 	IEnumerator GameLoop() {
 		while (GetWinnerID() == -1) {
 			powerupSpawner.SpawnRandomPowerup();
 			for (int i = 0; i < playerCount; i++) {
-				playerUI[i].ToggleTurn(true);
-				playerBalls[i].ToggleTurn(true);
-				
-				yield return new WaitWhile(() => playerBalls[i].inTurn || reassigningBalls);
-				yield return new WaitWhile(() => AnyBallMoving());
+				do {
+					currentlyPocketed = new List<int>();
+					playerUI[i].ToggleTurn(true);
+					playerBalls[i].ToggleTurn(true);
+					
+					yield return new WaitWhile(() => playerBalls[i].inTurn || reassigningBalls);
+					yield return new WaitWhile(() => AnyBallMoving());
 
-				playerBalls[i].ToggleTurn(false);
-				playerUI[i].ToggleTurn(false);
-
-				if (GetWinnerID() != -1) break;
+					playerBalls[i].ToggleTurn(false);
+					playerUI[i].ToggleTurn(false);
+					
+					if (GetWinnerID() != -1) break;
+				} while (ShouldGetAnotherTurn(i));
 			}
 		}
 
 		gameOver.Show(GetWinnerID());
+	}
+
+	bool ShouldGetAnotherTurn(int playerID) {
+		if (!chainTurns) return false;
+		if (currentlyPocketed.Count == 0) return false;
+
+		for (int i = 0; i < currentlyPocketed.Count; i++) {
+			if (currentlyPocketed[i] == playerID) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	public void AddPlayerScore(int playerID, int amount) {
@@ -173,6 +193,8 @@ public class GameController : MonoBehaviour {
 	}
 
 	void PocketBall(Ball ball) {
+		currentlyPocketed.Add(ball.playerID);
+
 		if (ball.isPlayer) {
 			for (int i = 0; i < playerCount; i++) {
 				if (i != ball.playerID) {
