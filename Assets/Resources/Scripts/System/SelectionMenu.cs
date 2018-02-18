@@ -50,12 +50,7 @@ public class SelectionMenu : MonoBehaviour {
 		gpd.gamePreferences.modifiers = modifiers.isOn;
 		gpd.gamePreferences.powerUps = powerUps.isOn;
 
-		DOTween.Init();
-		gpd.transitionImg.raycastTarget = true;
-		gpd.transitionImg.DOFade(1f,0.5f);
-		transform.DOPlay();
-
-		SceneManager.LoadScene("MainScene");
+		StartCoroutine( BeginGame() );
 	}
 	public void CheckIfReady(){
 		if(playerReady[0] && playerReady[1]){
@@ -94,6 +89,15 @@ public class SelectionMenu : MonoBehaviour {
 		texture[1].maxValue = gpd.textures.Count - 1;
 
 		type.maxValue = gpd.tableType.Count - 1;
+	}
+	private IEnumerator BeginGame(){
+		gpd.transitionImg.raycastTarget = true;
+		gpd.transitionImg.DOFade(1f,0.5f);
+
+		Camera.main.transform.DOLocalMoveZ(0f,0.8f);
+
+		yield return new WaitForSeconds(0.5f);
+		SceneManager.LoadScene("MainScene");
 	}
 	public void ExitGame(){
 		Application.Quit();

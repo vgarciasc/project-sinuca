@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: BLOCKING
   m_EditorClassIdentifier: 
   kind: 2
-  name: CRIA-MURO
+  name: WALL BUILDER
   sprite: {fileID: 21300000, guid: 231081d18b8ca88448cf1cacb2aab79c, type: 3}
