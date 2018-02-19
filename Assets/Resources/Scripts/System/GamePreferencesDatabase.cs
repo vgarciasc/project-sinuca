@@ -22,4 +22,8 @@ public class GamePreferencesDatabase : MonoBehaviour {
 	public Color GetColorByPlayerID(int playerID) {
 		return colors[gamePreferences.color[playerID]];
 	}
+
+	public Texture GetTextureByPlayerID(int playerID) {
+		return textures[gamePreferences.texture[playerID]];
+	}
 }

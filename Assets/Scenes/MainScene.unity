@@ -329,13 +329,14 @@ GameObject:
   - component: {fileID: 112855266}
   - component: {fileID: 112855268}
   - component: {fileID: 112855267}
+  - component: {fileID: 112855269}
   m_Layer: 5
   m_Name: T_BEGIN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &112855266
 RectTransform:
   m_ObjectHideFlags: 0
@@ -388,6 +389,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 112855265}
+--- !u!225 &112855269
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 112855265}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &171525886
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,12 +559,12 @@ Prefab:
     - target: {fileID: 224992261414516936, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 386
+      value: 325.5
       objectReference: {fileID: 0}
     - target: {fileID: 224992261414516936, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 217
+      value: 183
       objectReference: {fileID: 0}
     - target: {fileID: 224992261414516936, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
@@ -747,52 +759,52 @@ Prefab:
     - target: {fileID: 224504125839909222, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 29.975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224620044391817920, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 29.975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224569993272392296, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 29.975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224160798651949134, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 29.975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224817614127996334, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 29.975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224722188360997710, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 29.975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224972528763396158, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 29.975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224474560573644226, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 29.975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224727372187116614, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 29.975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224612776011453314, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 29.975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114408381069568150, guid: 4bc166886434cc84ba846a0cda54e6c7,
         type: 2}
@@ -1049,13 +1061,14 @@ GameObject:
   - component: {fileID: 331785432}
   - component: {fileID: 331785434}
   - component: {fileID: 331785433}
+  - component: {fileID: 331785435}
   m_Layer: 5
   m_Name: T_SCORE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &331785432
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1169,11 +1182,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1193,6 +1206,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 331785431}
+--- !u!225 &331785435
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 331785431}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &350063538
 Prefab:
   m_ObjectHideFlags: 0
@@ -1269,7 +1293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 555d3344531fde547b63b266ffa838a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScore: 3
+  maxScore: 5
   chainTurns: 1
   gameOver: {fileID: 1439444836}
   balls:
@@ -1290,6 +1314,8 @@ MonoBehaviour:
   playerUI:
   - {fileID: 2144786780}
   - {fileID: 1844156589}
+  beginGameCanvasGroup: {fileID: 112855269}
+  chainTurnCanvasGroup: {fileID: 1378805548}
 --- !u!4 &421277447
 Transform:
   m_ObjectHideFlags: 0
@@ -2723,13 +2749,14 @@ GameObject:
   - component: {fileID: 1378805545}
   - component: {fileID: 1378805547}
   - component: {fileID: 1378805546}
+  - component: {fileID: 1378805548}
   m_Layer: 5
   m_Name: T_CHAIN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1378805545
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2843,11 +2870,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -2867,6 +2894,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1378805544}
+--- !u!225 &1378805548
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1378805544}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!114 &1439444836 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114688607727904086, guid: 4bc166886434cc84ba846a0cda54e6c7,
@@ -4000,11 +4038,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

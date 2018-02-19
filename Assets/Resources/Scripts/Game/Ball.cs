@@ -49,8 +49,11 @@ public class Ball : MonoBehaviour {
 		var obj = Instantiate(playerBall, this.transform, false);
 		isPlayer = true;
 
-		if (rb3d != null) {
-			mr.material = data.playerMaterial;
+		if (rb3d != null && GameObject.FindGameObjectWithTag("GamePreferences") != null) {
+			GamePreferencesDatabase gpd = GamePreferencesDatabase.GetGamePreferencesDatabase();
+			mr.material.EnableKeyword("_DETAIL_MULX2");
+			mr.material.SetTexture("_DetailAlbedoMap", gpd.GetTextureByPlayerID(playerID));
+			mr.material.SetColor("_DetailAlbedoMap", gpd.GetColorByPlayerID(playerID));
 		}
 	}
 

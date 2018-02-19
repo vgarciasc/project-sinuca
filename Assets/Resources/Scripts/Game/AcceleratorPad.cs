@@ -18,6 +18,7 @@ public class AcceleratorPad : MonoBehaviour, SelectableObstacle {
 
 	void Start() {
 		originalColor = meshRenderer.material.color;
+		DeactivateIfPreference();
 	}
 
 	void OnTriggerEnter(Collider collider) {
@@ -41,5 +42,14 @@ public class AcceleratorPad : MonoBehaviour, SelectableObstacle {
 		meshRenderer.material.DOColor(Color.clear, 0.3f).OnComplete(() => {
 			Destroy(this.gameObject);
 		});
+	}
+
+	void DeactivateIfPreference() {
+		if (GameObject.FindGameObjectWithTag("GamePreferences") != null) {
+			GamePreferencesDatabase gpd = GamePreferencesDatabase.GetGamePreferencesDatabase();
+			if (!gpd.gamePreferences.modifiers) {
+				Destroy(this.gameObject);
+			}
+		}
 	}
 }

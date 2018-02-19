@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using DG.Tweening;
 
 public class GameController : MonoBehaviour {
 	public static GameController GetGameController() {
@@ -23,6 +25,10 @@ public class GameController : MonoBehaviour {
 	[SerializeField]
 	PowerupSpawner powerupSpawner;
 	public List<PlayerUI> playerUI;
+	[SerializeField]
+	CanvasGroup beginGameCanvasGroup;
+	[SerializeField]
+	CanvasGroup chainTurnCanvasGroup;
 
 	List<PlayerBall> playerBalls = new List<PlayerBall>();
 	List<int> playerScores = new List<int>();
@@ -81,8 +87,12 @@ public class GameController : MonoBehaviour {
 	List<int> currentlyPocketed = new List<int>();
 
 	IEnumerator GameLoop() {
+		beginGameCanvasGroup.alpha = 1f;
+		yield return new WaitForSeconds(2f);
+		beginGameCanvasGroup.DOFade(0f, 1f);
+
 		while (GetWinnerID() == -1) {
-			powerupSpawner.SpawnRandomPowerup();
+			RandomSpawn();
 			for (int i = 0; i < playerCount; i++) {
 				do {
 					currentlyPocketed = new List<int>();
@@ -90,13 +100,18 @@ public class GameController : MonoBehaviour {
 					playerBalls[i].ToggleTurn(true);
 					
 					yield return new WaitWhile(() => playerBalls[i].inTurn || reassigningBalls);
+					yield return new WaitForSeconds(1f);
 					yield return new WaitWhile(() => AnyBallMoving());
 
 					playerBalls[i].ToggleTurn(false);
 					playerUI[i].ToggleTurn(false);
 					
-					if (GetWinnerID() != -1) break;
-				} while (ShouldGetAnotherTurn(i));
+					if (GetWinnerID() == -1 && ShouldGetAnotherTurn(i)) {
+						chainTurnCanvasGroup.alpha = 1f;
+						yield return new WaitForSeconds(0.25f);
+						chainTurnCanvasGroup.DOFade(0f, 1f);
+					}
+				} while (ShouldGetAnotherTurn(i) && GetWinnerID() == -1);
 			}
 		}
 
@@ -194,21 +209,16 @@ public class GameController : MonoBehaviour {
 
 	void PocketBall(Ball ball) {
 		currentlyPocketed.Add(ball.playerID);
-
-		if (ball.isPlayer) {
-			for (int i = 0; i < playerCount; i++) {
-				if (i != ball.playerID) {
-					AddPlayerScore(i, 1);
-					UpdatePlayerUI(i);
+		for (int i = 0; i < playerCount; i++) {
+			if (i != ball.playerID) {
+				AddPlayerScore(i, 1);
+				UpdatePlayerUI(i);
+				if (ball.isPlayer) {
+					ReassignPlayerBall(ball);
 				}
+				return;
 			}
-
-			ReassignPlayerBall(ball);
-			return;
 		}
-
-		AddPlayerScore(ball.playerID, 1);
-		UpdatePlayerUI(ball.playerID);
 	}
 
 	public void RemoveAndReassignPlayers(int player_caster_ID) {
@@ -225,5 +235,17 @@ public class GameController : MonoBehaviour {
 		}
 
 		reassigningBalls = false;
+	}
+
+	void RandomSpawn() {
+		bool shouldSpawn = true;
+		if (GameObject.FindGameObjectWithTag("GamePreferences") != null) {
+			GamePreferencesDatabase gpd = GamePreferencesDatabase.GetGamePreferencesDatabase();
+			shouldSpawn = (gpd.gamePreferences.powerUps);
+		}
+
+		if (shouldSpawn) {
+			powerupSpawner.SpawnRandomPowerup();
+		}
 	}
 }

@@ -6,5 +6,4 @@ using UnityEngine;
 public class PlayerData {
 	public Color color;
 	public Material material;
-	public Material playerMaterial;
 }

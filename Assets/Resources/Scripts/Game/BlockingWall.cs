@@ -33,6 +33,8 @@ public class BlockingWall : MonoBehaviour, SelectableObstacle {
 	bool hovering;
 	
 	void Start() {
+		DeactivateIfPreference();
+
 		upPosition = this.transform.localPosition;
 		downPosition = this.transform.localPosition - Vector3.up * moveDistance;
 
@@ -127,5 +129,14 @@ public class BlockingWall : MonoBehaviour, SelectableObstacle {
 
 	void Destroy() {
 		Destroy(this.gameObject);
+	}
+
+	void DeactivateIfPreference() {
+		if (GameObject.FindGameObjectWithTag("GamePreferences") != null) {
+			GamePreferencesDatabase gpd = GamePreferencesDatabase.GetGamePreferencesDatabase();
+			if (!gpd.gamePreferences.modifiers) {
+				Destroy(this.gameObject);
+			}
+		}
 	}
 }

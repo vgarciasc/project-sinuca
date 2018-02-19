@@ -24,6 +24,7 @@ public class Portal : MonoBehaviour, SelectableObstacle {
 	Color originalColor;
 
 	void Start() {
+		DeactivateIfPreference();
 		manager = this.GetComponentInParent<PortalManager>();
 		originalColor = meshRenderer.material.color;
 	}
@@ -95,5 +96,14 @@ public class Portal : MonoBehaviour, SelectableObstacle {
 		meshRenderer.material.DOColor(Color.clear, 0.3f).OnComplete(() => {
 			Destroy(this.gameObject);
 		});
+	}
+
+	void DeactivateIfPreference() {
+		if (GameObject.FindGameObjectWithTag("GamePreferences") != null) {
+			GamePreferencesDatabase gpd = GamePreferencesDatabase.GetGamePreferencesDatabase();
+			if (!gpd.gamePreferences.modifiers) {
+				Destroy(this.gameObject);
+			}
+		}
 	}
 }
