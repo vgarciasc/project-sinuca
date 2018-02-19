@@ -26,6 +26,7 @@ public class Powerup : MonoBehaviour {
 		var ball = obj.GetComponentInChildren<PlayerBall>();
 
 		if (ball != null) {
+			GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayAudioClip(Sfx.GET_POWERUP);
 			DestroyMe(() => {
 				manager.AddPowerup(ball.ball.playerID, data);
 				Destroy(this.gameObject);

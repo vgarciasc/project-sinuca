@@ -114,13 +114,15 @@ public class GameController : MonoBehaviour {
 				} while (ShouldGetAnotherTurn(i) && GetWinnerID() == -1);
 			}
 		}
-
+		GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayAudioClip(Sfx.END_GAME);
 		gameOver.Show(GetWinnerID());
 	}
 
 	bool ShouldGetAnotherTurn(int playerID) {
 		if (!chainTurns) return false;
 		if (currentlyPocketed.Count == 0) return false;
+		
+		GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayAudioClip(Sfx.CHAIN);
 
 		for (int i = 0; i < currentlyPocketed.Count; i++) {
 			if (currentlyPocketed[i] == playerID) {

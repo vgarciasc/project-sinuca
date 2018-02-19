@@ -68,10 +68,17 @@ public class Ball : MonoBehaviour {
 			Pocket();
 		}
 	}
+	void OnCollisionEnter(Collision other){
+		if(other.gameObject.tag == "Ball"){
+			//GetComponent<AudioSource>().Play();
+		}
+	}
 
 	void Pocket() {
 		if (pocketBallEvent != null) pocketBallEvent(this);
 		this.gameObject.SetActive(false);
+		
+		GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayAudioClip(Sfx.INTO_POCKET);
 	}
 
 	void FixedUpdate() {
@@ -99,7 +106,7 @@ public class Ball : MonoBehaviour {
 
 	public void Teleport(Vector3 position, Vector3 direction) {
 		this.transform.position = position;
-
+		GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayAudioClip(Sfx.PORTAL);
 		if (direction != Vector3.up) {
 			RedirectVelocity(direction);
 		}

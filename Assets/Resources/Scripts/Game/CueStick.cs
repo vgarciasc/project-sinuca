@@ -88,6 +88,7 @@ public class CueStick : MonoBehaviour {
 		else if (shotAnimation && currentIntensity < 0f) {
 			shotAnimation = false;
 			playerBall.Shoot(currentAngle, originalIntensity * intensityModifier);
+			GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayAudioClip(Sfx.HIT_BALL);
 		}
 	}
 

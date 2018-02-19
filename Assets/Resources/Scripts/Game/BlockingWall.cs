@@ -91,7 +91,7 @@ public class BlockingWall : MonoBehaviour, SelectableObstacle {
 
 	void ToggleWall(bool value) {
 		if (inAnimation) return;
-		
+		GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayAudioClip(Sfx.WALL_SWITCH);
 		active = value;
 		wallCollider.enabled = value;
 		meshRenderer.material.DOColor(
